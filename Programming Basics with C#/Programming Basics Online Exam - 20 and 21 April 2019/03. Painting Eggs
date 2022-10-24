@@ -1,0 +1,61 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string eggsSize = Console.ReadLine();
+        string eggsColor = Console.ReadLine();
+        int packs = int.Parse(Console.ReadLine());
+
+        double price = 0.0;
+
+        if (eggsColor == "Red")
+        {
+            if (eggsSize == "Large")
+            {
+                price = packs * 16;
+            }
+            else if (eggsSize == "Medium")
+            {
+                price = packs * 13;
+            }
+            else if (eggsSize == "Small")
+            {
+                price = packs * 9;
+            }
+        }
+        else if (eggsColor == "Green")
+        {
+            if (eggsSize == "Large")
+            {
+                price = packs * 12;
+            }
+            else if (eggsSize == "Medium")
+            {
+                price = packs * 9;
+            }
+            else if (eggsSize == "Small")
+            {
+                price = packs * 8;
+            }
+        }
+        else if (eggsColor == "Yellow")
+        {
+            if (eggsSize == "Large")
+            {
+                price = packs * 9;
+            }
+            else if (eggsSize == "Medium")
+            {
+                price = packs * 7;
+            }
+            else if (eggsSize == "Small")
+            {
+                price = packs * 5;
+            }
+        }
+        price -= price * 0.35;
+        Console.WriteLine($"{price:0.00} leva.");
+    }
+}
