@@ -1,0 +1,14 @@
+using System;
+
+public class Program
+    {
+        static void Main()
+        {
+            double squareMeters = double.Parse(Console.ReadLine());
+            double priceWithNoDiscount = squareMeters * 7.61;
+            double discount = 0.18 * priceWithNoDiscount;
+            double finalAmount = priceWithNoDiscount - discount;
+            Console.WriteLine($"The final price is: {finalAmount} lv.");
+            Console.WriteLine($"The discount is: {discount} lv.");
+        }
+    }
