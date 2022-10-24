@@ -1,0 +1,26 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double flourPrice = double.Parse(Console.ReadLine());
+        double flourKg = double.Parse(Console.ReadLine());
+        double sugarKg = double.Parse(Console.ReadLine());
+        int eggsPacks = int.Parse(Console.ReadLine());
+        int bakersYeastPacks = int.Parse(Console.ReadLine());
+
+        double sugarPrice = flourPrice * 0.75;
+        double eggsPrice = flourPrice * 1.1;
+        double bakersYeastPrice = sugarPrice * 0.2;
+
+        double flourCost = flourPrice * flourKg;
+        double sugarCost = sugarKg * sugarPrice;
+        double eggsCost = eggsPacks * eggsPrice;
+        double bakersYeastCost = bakersYeastPacks * bakersYeastPrice;
+
+        double price = flourCost + sugarCost + eggsCost + bakersYeastCost;
+        Console.WriteLine($"{price:0.00}");
+
+    }
+}
