@@ -1,0 +1,24 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string type = Console.ReadLine();
+        int rows = int.Parse(Console.ReadLine());
+        int cols = int.Parse(Console.ReadLine());
+        
+        if (type == "Premiere")
+        {
+            Console.WriteLine($"{rows*cols*12:0.00} leva");
+        }
+        else if (type == "Normal")
+        {
+            Console.WriteLine($"{rows * cols * 7.5:0.00} leva");
+        }
+        else
+        {
+            Console.WriteLine($"{rows * cols * 5:0.00} leva");
+        }
+    }
+}
