@@ -1,0 +1,61 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string destination = Console.ReadLine();
+        string period = Console.ReadLine();
+        int nights = int.Parse(Console.ReadLine());
+
+        double price = 0.0;
+
+        if (destination == "France")
+        {
+            if (period == "21-23")
+            {
+                price = nights * 30;
+            }
+            else if (period == "24-27")
+            {
+                price = nights * 35;
+            }
+            else if (period == "28-31")
+            {
+                price = nights * 40;
+            }
+        }
+        else if (destination == "Italy")
+        {
+            if (period == "21-23")
+            {
+                price = nights * 28;
+            }
+            else if (period == "24-27")
+            {
+                price = nights * 32;
+            }
+            else if (period == "28-31")
+            {
+                price = nights * 39;
+            }
+        }
+        else if (destination == "Germany")
+        {
+            if (period == "21-23")
+            {
+                price = nights * 32;
+            }
+            else if (period == "24-27")
+            {
+                price = nights * 37;
+            }
+            else if (period == "28-31")
+            {
+                price = nights * 43;
+            }
+        }
+
+        Console.WriteLine($"Easter trip to {destination} : {price:0.00} leva.");
+    }
+}
