@@ -1,0 +1,28 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int guests = int.Parse(Console.ReadLine());
+        double budget = double.Parse(Console.ReadLine());
+
+        double breadsNeeded = Math.Ceiling(guests / 3.0);
+        int eggsNeeded = guests * 2;
+
+        double breadsPrice = breadsNeeded * 4;
+        double eggsPrice = eggsNeeded * 0.45;
+        double totalPrice = breadsPrice + eggsPrice;
+
+        if (budget>=totalPrice)
+        {
+            Console.WriteLine($"Lyubo bought {breadsNeeded} Easter bread and {eggsNeeded} eggs.");
+            Console.WriteLine($"He has {budget-totalPrice:0.00} lv. left.");
+        }
+        else
+        {
+            Console.WriteLine($"Lyubo doesn't have enough money.");
+            Console.WriteLine($"He needs {totalPrice-budget:0.00} lv. more.");
+        }
+    }
+}
