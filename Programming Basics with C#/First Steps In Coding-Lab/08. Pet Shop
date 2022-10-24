@@ -1,0 +1,12 @@
+using System;
+
+  public class Program
+    {
+        static void Main()
+        {
+            int dogs = int.Parse(Console.ReadLine());
+            int cats = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{dogs*2.5 + cats*4} lv.");
+        }
+    }
