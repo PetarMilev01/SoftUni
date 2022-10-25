@@ -1,0 +1,25 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int evenNumbersSum = 0;
+        int oddNumbersSum = 0;
+
+        foreach (var number in numbers)
+        {
+            if (number % 2 == 0)
+            {
+                evenNumbersSum += number;
+            }
+            else
+            {
+                oddNumbersSum += number;
+            }
+        }
+        Console.WriteLine(evenNumbersSum-oddNumbersSum);
+    }
+}
