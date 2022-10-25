@@ -1,0 +1,31 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int rotations = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < rotations; i++)
+        {
+            int[] temp = new int[numbers.Length];
+
+            for (int c = 0; c < numbers.Length; c++)
+            {
+                if (c==0)
+                {
+                    temp[temp.Length - (1 + c)] = numbers[c];
+                }
+                else
+                {
+                    temp[c-1] = numbers[c];
+                }
+
+            }
+            numbers = temp;
+        }
+        Console.WriteLine(string.Join(" ",numbers));
+    }
+}
