@@ -1,0 +1,39 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int breadsCount = int.Parse(Console.ReadLine());
+
+        double allSugarUsed = 0;
+        double allFlourUsed = 0;
+        int topUsedSugar = 0;
+        int topUsedFlour = 0;
+
+        for (int i = 0; i < breadsCount; i++)
+        {
+            int usedSugar = int.Parse(Console.ReadLine());
+            int usedFlour = int.Parse(Console.ReadLine());
+
+            allSugarUsed += usedSugar;
+            allFlourUsed += usedFlour;
+
+            if (usedSugar>topUsedSugar)
+            {
+                topUsedSugar = usedSugar;
+            }
+            if (usedFlour>topUsedFlour)
+            {
+                topUsedFlour = usedFlour;
+            }
+        }
+
+        double sugarPacksNeeded = Math.Ceiling(allSugarUsed / 950);
+        double flourPacksNeeded = Math.Ceiling(allFlourUsed / 750);
+
+        Console.WriteLine($"Sugar: {sugarPacksNeeded}");
+        Console.WriteLine($"Flour: {flourPacksNeeded}");
+        Console.WriteLine($"Max used flour is {topUsedFlour} grams, max used sugar is {topUsedSugar} grams.");
+    }
+}
