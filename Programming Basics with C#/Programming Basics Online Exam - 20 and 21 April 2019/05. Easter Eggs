@@ -1,0 +1,56 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int redEggs = 0;
+        int orangeEggs = 0;
+        int blueEggs = 0;
+        int greenEggs = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            string eggColor = Console.ReadLine();
+            if (eggColor == "red")
+            {
+                redEggs++;
+            }
+            else if (eggColor == "orange")
+            {
+                orangeEggs++;
+            }
+            else if (eggColor == "blue")
+            {
+                blueEggs++;
+            }
+            else if (eggColor == "green")
+            {
+                greenEggs++;
+            }
+        }
+       
+        Console.WriteLine($"Red eggs: {redEggs}");
+        Console.WriteLine($"Orange eggs: {orangeEggs}");
+        Console.WriteLine($"Blue eggs: {blueEggs}");
+        Console.WriteLine($"Green eggs: {greenEggs}");
+
+        if (blueEggs > redEggs && blueEggs>orangeEggs && blueEggs>greenEggs)
+        {
+            Console.WriteLine($"Max eggs: {blueEggs} -> blue");
+        }
+        else if (redEggs >blueEggs && redEggs>orangeEggs && redEggs>greenEggs)
+        {
+            Console.WriteLine($"Max eggs: {redEggs} -> red");
+        }
+        else if (orangeEggs>blueEggs && orangeEggs>redEggs && orangeEggs>greenEggs)
+        {
+            Console.WriteLine($"Max eggs: {orangeEggs} -> orange");
+        }
+        else if (greenEggs>orangeEggs && greenEggs>blueEggs && greenEggs>redEggs)
+        {
+            Console.WriteLine($"Max eggs: {greenEggs} -> green");
+        }
+    }
+}
