@@ -1,0 +1,42 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int customersCount = int.Parse(Console.ReadLine());
+        double totalPrice = 0.0;
+
+        for (int i = 0; i < customersCount; i++)
+        {
+            string productName = Console.ReadLine();
+            int itemsCounter = 0;
+            double price = 0.0;
+
+            while (productName != "Finish")
+            {
+                itemsCounter++;
+                if (productName == "basket")
+                {
+                    price += 1.50;
+                }
+                else if (productName == "wreath")
+                {
+                    price += 3.80;
+                }
+                else if (productName == "chocolate bunny")
+                {
+                    price += 7;
+                }
+                productName = Console.ReadLine();
+            }
+            if (itemsCounter % 2 == 0) 
+            {
+                price -= price * 0.2;
+            }
+            totalPrice += price;
+            Console.WriteLine($"You purchased {itemsCounter} items for {price:0.00} leva.");
+        }
+        Console.WriteLine($"Average bill per client is: {totalPrice/customersCount:0.00} leva.");
+    }
+}
