@@ -1,0 +1,27 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            bool isBigger = true;
+            for (int c = i+1; c < numbers.Length; c++)
+            {
+                if (numbers[i] <= numbers[c])
+                {
+                    isBigger = false;
+                    break;
+                }
+            }
+            if (isBigger)
+            {
+                Console.Write($"{numbers[i]} ");
+            }
+        }
+    }
+}
