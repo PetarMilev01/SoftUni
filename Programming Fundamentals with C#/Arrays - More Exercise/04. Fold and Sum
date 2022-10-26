@@ -1,0 +1,45 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] arr = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        int[] leftSideArray = new int[arr.Length / 4];
+        int[] rightSideArray = new int[arr.Length / 4];
+        int[] middleSideArray = new int[arr.Length / 2];
+
+        for (int i = 0; i < arr.Length/4; i++)
+        {
+            leftSideArray[i] = arr[i];
+        }
+        for (int i = leftSideArray.Length,p=0; i < (arr.Length/4)*3; i++,p++)
+        {
+            middleSideArray[p] = arr[i];
+        }
+        for (int i = (arr.Length / 4) * 3,p=0; i < arr.Length; i++,p++)
+        {
+            rightSideArray[p] = arr[i];
+        }
+        Array.Reverse(leftSideArray);
+        Array.Reverse(rightSideArray);
+
+        int[] combinationArray = new int[arr.Length / 2];
+
+        for (int i = 0; i < combinationArray.Length/2; i++)
+        {
+            combinationArray[i] = leftSideArray[i];
+        }
+        for (int i = combinationArray.Length/2,p=0; i < combinationArray.Length; i++,p++)
+        {
+            combinationArray[i] = rightSideArray[p];
+        }
+
+        for (int i = 0; i < middleSideArray.Length; i++)
+        {
+            Console.Write($"{combinationArray[i] + middleSideArray[i]} ");
+        }
+    }
+}
