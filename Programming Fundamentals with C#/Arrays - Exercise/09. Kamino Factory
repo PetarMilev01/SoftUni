@@ -1,0 +1,59 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+
+        int n = int.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+
+        int bestCount = 0; // nai-dobrata duljina w podporedicata
+        int bestIndex = 0; // index-a na koito e nai-dobratata i blizka poredica ot 1ci do nachaloto
+        int bestSequenceSum = 0; // 10110 -> 3
+        string bestSequence = ""; // "10110"
+
+        int counter = 0;
+        int bestCounter = 0;
+
+        while (input != "Clone them!")
+        {
+            string currentSequence = input.Replace("!", ""); // 1 0 1 1 0
+            string[] subsequences = currentSequence.Split(new[] { '0' }, StringSplitOptions.RemoveEmptyEntries); // 1 11
+
+            int count = 0; //taka wzimame duljinata na podporedicite primerno 1->1 ; 11->2.length
+            int sum = 0; // sumata na 1cite -> 10110 -> sum == 3;
+            string bestSubSequence = ""; // ot 10110 wzimame 11
+            counter++;
+
+            foreach (string sequence in subsequences)
+            {
+                if (sequence.Length > count)
+                {
+                    count = sequence.Length;
+                    bestSubSequence = sequence;
+                }
+                sum += sequence.Length;
+            }
+            int beginIndex = currentSequence.IndexOf(bestSubSequence);
+
+            if (count > bestCount
+                || (count == bestCount && beginIndex < bestIndex)
+                || (count == bestCount && beginIndex == bestIndex && sum > bestSequenceSum)
+                || counter == 1)
+            {
+                bestCount = count;
+                bestSequence = currentSequence;
+                bestIndex = beginIndex;
+                bestSequenceSum = sum;
+                bestCounter = counter;
+            }
+
+            input = Console.ReadLine();
+        }
+        char[] arrResult = bestSequence.ToCharArray();
+        Console.WriteLine($"Best DNA sample {bestCounter} with sum: {bestSequenceSum}.");
+        Console.WriteLine(string.Join(" ",arrResult));
+    }
+}
