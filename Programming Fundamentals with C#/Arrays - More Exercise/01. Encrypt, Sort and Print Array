@@ -1,0 +1,40 @@
+using System;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        char[] vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+        string[] names = new string[n];
+        int[] numbers = new int[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            names[i] = Console.ReadLine();
+        }
+
+        for (int i = 0; i < names.Length; i++)
+        {
+            int sum = 0;
+            string name = names[i];
+            foreach (var letter in name)
+            {
+                if (vowels.Contains(letter))
+                {
+                    sum += (int)letter * name.Length;
+                }
+                else
+                {
+                    sum += (int)letter / name.Length;
+                }
+            }
+            numbers[i] = sum;
+        }
+        foreach (var number in numbers.OrderBy(x=>x))
+        {
+            Console.WriteLine(number);
+        }
+    }
+}
