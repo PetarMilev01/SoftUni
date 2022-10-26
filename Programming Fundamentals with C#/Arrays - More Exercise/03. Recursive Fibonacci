@@ -1,0 +1,29 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        long n = long.Parse(Console.ReadLine());
+
+        if (n == 1)
+        {
+            Console.WriteLine(1);
+            return;
+        }
+
+        long[] numbers = new long[n];
+        numbers[0] = 1;
+        numbers[1] = 1;
+        if (n == 1)
+        {
+            Console.WriteLine(1);
+        }
+
+        for (long i = 2; i < n; i++)
+        {
+            numbers[i] = numbers[i - 1] + numbers[i - 2];
+        }
+        Console.WriteLine(numbers[n-1]);
+    }
+}
