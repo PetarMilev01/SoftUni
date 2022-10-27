@@ -1,0 +1,119 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        string input = Console.ReadLine();
+        int counter = 0;
+
+        while (input != "end")
+        {
+            List<string> parts = input.Split(' ').ToList();
+            string command = parts[0];
+            if (command == "Add" || command == "Remove" || command == "RemoveAt" || command == "Insert")
+            {
+                counter++;
+            }
+
+            if (command == "Add")
+            {
+                int number = int.Parse(parts[1]);
+                numbers.Add(number);
+            }
+            else if (command == "Remove")
+            {
+                int number = int.Parse(parts[1]);
+                numbers.Remove(number);
+            }
+            else if (command == "RemoveAt")
+            {
+                int index = int.Parse(parts[1]);
+                numbers.RemoveAt(index);
+            }
+            else if (command == "Insert")
+            {
+                int number = int.Parse(parts[1]);
+                int index = int.Parse(parts[2]);
+                numbers.Insert(index, number);
+            }
+            else if (command == "Contains")
+            {
+                int number = int.Parse(parts[1]);
+                if (numbers.Contains(number))
+                {
+                    Console.WriteLine($"Yes");
+                }
+                else
+                {
+                    Console.WriteLine("No such number");
+                }
+            }
+            else if (command == "PrintEven")
+            {
+                foreach (var number in numbers.Where(x => x % 2 == 0))
+                {
+                    Console.Write(number + " ");
+                }
+                Console.WriteLine();
+            }
+            else if (command == "PrintOdd")
+            {
+                foreach (var number in numbers.Where(x => x % 2 != 0))
+                {
+                    Console.Write(number + " ");
+                }
+                Console.WriteLine();
+            }
+            else if (command == "GetSum")
+            {
+                Console.WriteLine(numbers.Sum());
+            }
+            else if (command == "Filter")
+            {
+                string sign = parts[1];
+                int number = int.Parse(parts[2]);
+
+                if (sign == "<")
+                {
+                    foreach (var current in numbers.Where(x => x < number))
+                    {
+                        Console.Write(current + " ");
+                    }
+                }
+                else if (sign == "<=")
+                {
+                    foreach (var current in numbers.Where(x => x <= number))
+                    {
+                        Console.Write(current + " ");
+                    }
+                }
+                else if (sign == ">=")
+                {
+                    foreach (var current in numbers.Where(x => x >= number))
+                    {
+                        Console.Write(current + " ");
+                    }
+                }
+                else if (sign == ">")
+                {
+                    foreach (var current in numbers.Where(x => x > number))
+                    {
+                        Console.Write(current + " ");
+                    }
+                }
+                Console.WriteLine();
+            }
+            
+            input = Console.ReadLine();
+        }
+        
+        if (counter>0)
+        {
+            Console.WriteLine(string.Join(" ",numbers));
+        }
+    }
+}
