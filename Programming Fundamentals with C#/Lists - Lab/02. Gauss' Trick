@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+
+        for (int i = 1; i < numbers.Count; i++)
+        {
+            numbers[i - 1] += numbers[numbers.Count - 1];
+            numbers.RemoveAt(numbers.Count - 1);
+        }
+
+        Console.WriteLine(string.Join(" ",numbers));
+    }
+}
