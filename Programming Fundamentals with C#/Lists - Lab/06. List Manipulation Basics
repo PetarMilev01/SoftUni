@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        string input = Console.ReadLine();
+
+        while (input != "end")
+        {
+            List<string> parts = input.Split(' ').ToList();
+            string command = parts[0];
+
+            if (command == "Add")
+            {
+                int number = int.Parse(parts[1]);
+                numbers.Add(number);
+            }
+            else if (command == "Remove")
+            {
+                int number = int.Parse(parts[1]);
+                numbers.Remove(number);
+            }
+            else if (command == "RemoveAt")
+            {
+                int index = int.Parse(parts[1]);
+                numbers.RemoveAt(index);
+            }
+            else if (command == "Insert")
+            {
+                int number = int.Parse(parts[1]);
+                int index = int.Parse(parts[2]);
+                numbers.Insert(index, number);
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(string.Join(" ",numbers));
+    }
+}
