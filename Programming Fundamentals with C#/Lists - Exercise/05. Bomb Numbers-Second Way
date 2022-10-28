@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        int[] bombNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        int bombNumber = bombNumbers[0];
+        int reach = bombNumbers[1];
+
+        while (numbers.Contains(bombNumber))
+        {
+            int bombNumberIndex = numbers.IndexOf(bombNumber);
+            int counter = 0;
+            for (int i = bombNumberIndex + 1; counter < reach; counter++)
+            {
+                if (numbers.Count > i)
+                {
+                    numbers.RemoveAt(i);
+                }
+            }
+            counter = 0;
+            for (int i = bombNumberIndex - 1; counter < reach; counter++)
+            {
+                if (numbers.Count > i && i >= 0)
+                {
+                    numbers.RemoveAt(i);
+                }
+                i--;
+            }
+            numbers.Remove(bombNumber);
+        }
+        Console.WriteLine(numbers.Sum());
+    }
+}
