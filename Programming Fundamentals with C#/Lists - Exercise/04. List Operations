@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        string input = Console.ReadLine();
+
+        while (input != "End")
+        {
+            string[] commands = input.Split(' ').ToArray();
+            string command = commands[0];
+
+            if (command == "Add")
+            {
+                int number = int.Parse(commands[1]);
+                numbers.Add(number);
+            }
+            else if (command == "Remove")
+            {
+                int index = int.Parse(commands[1]);
+                if (index >= 0 && index < numbers.Count)
+                {
+                    numbers.RemoveAt(index);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid index");
+                }
+            }
+            else if (command == "Insert")
+            {
+                int number = int.Parse(commands[1]);
+                int index = int.Parse(commands[2]);
+
+                if (index >= 0 && index < numbers.Count)
+                {
+                    numbers.Insert(index, number);
+                }
+                else if (index == numbers.Count)
+                {
+                    numbers.Add(number);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid index");
+                }
+
+            }
+            else if (command == "Shift")
+            {
+                string position = commands[1];
+                int times = int.Parse(commands[2]);
+
+                if (position == "left") 
+                {
+                    for (int i = 0, counter=0; counter < times; counter++)
+                    {
+                        int firstNumber = numbers[i];
+                        numbers.Add(firstNumber);
+                        numbers.RemoveAt(0);
+                    }
+                }
+                else if(position == "right")
+                {
+                    for (int i = numbers.Count-1, counter = 0; counter < times; counter++)
+                    {
+                        int lastNumber = numbers[i];
+                        numbers.Insert(0,lastNumber);
+                        numbers.RemoveAt(numbers.Count-1);
+                    }
+                }
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(string.Join(" ",numbers));
+    }
+}
