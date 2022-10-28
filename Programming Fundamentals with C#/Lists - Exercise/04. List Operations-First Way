@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+        int[] bombNumbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            if (numbers[i] == bombNumbers[0])
+            {
+                for (int c = i-bombNumbers[1]; c <= i+bombNumbers[1]; c++)
+                {
+                    if (c>=0 && c<numbers.Count)
+                    {
+                        numbers[c] = 0;
+                    }
+                }
+            }
+        }
+        Console.WriteLine(numbers.Sum());
+    }
+}
