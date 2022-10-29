@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> parts = Console.ReadLine().Split('|').ToList();
+        parts.Reverse();
+        List<string> result = new List<string>();
+
+        foreach (var part in parts)
+        {
+            string[] numbers = part.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                result.Add(numbers[i]);
+            }
+        }
+        Console.WriteLine(string.Join(" ",result));
+    }
+}
