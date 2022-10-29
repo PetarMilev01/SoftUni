@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> words = Console.ReadLine().Split(' ').ToList();
+        string input = Console.ReadLine();
+
+        while (input != "3:1")
+        {
+            string[] commands = input.Split(' ').ToArray();
+            string command = commands[0];
+
+            if (command == "merge")
+            {
+                int startIndex = int.Parse(commands[1]);
+                int endIndex = int.Parse(commands[2]);
+
+                if (startIndex<0)
+                {
+                    startIndex = 0;
+                }
+                else if (startIndex>words.Count-1)
+                {
+                    startIndex = words.Count - 1;
+                }
+                if (endIndex>words.Count-1)
+                {
+                    endIndex = words.Count - 1;
+                }
+                else if (endIndex<0)
+                {
+                    endIndex = 0;
+                }
+                List<string> temp = new List<string>();
+                for (int i = startIndex,p=0; p < endIndex-startIndex; p++)
+                {
+                    words[i] += words[i + 1];
+                    words.RemoveAt(i + 1);
+                }
+            }
+            else if (command == "divide")
+            {
+                int index = int.Parse(commands[1]);
+                int parts = int.Parse(commands[2]);
+                string element = words[index];
+
+                List<string> elementParts = new List<string>();
+                int length = element.Length / parts; //length of every sub-element 
+
+                for (int i = 0; i < parts; i++)
+                {
+                    if (i+1==parts)
+                    {
+                        elementParts.Add(element);
+                    }
+                    else
+                    {
+                        elementParts.Add(element.Substring(0, length));
+                        
+                        element = element.Remove(0, length);
+                    }
+                }
+                words.RemoveAt(index);
+                words.InsertRange(index,elementParts);
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(string.Join(" ",words));
+    }
+}
