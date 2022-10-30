@@ -1,0 +1,16 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int chickenMenus = int.Parse(Console.ReadLine());
+        int fishMenus = int.Parse(Console.ReadLine());
+        int veganMenus = int.Parse(Console.ReadLine());
+
+        double price = chickenMenus * 10.35 + fishMenus * 12.40 + veganMenus * 8.15;
+        price += (price * 0.2) + 2.50;
+        
+        Console.WriteLine(price);
+    }
+}
