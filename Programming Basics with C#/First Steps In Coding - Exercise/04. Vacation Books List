@@ -1,0 +1,13 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int sheets = int.Parse(Console.ReadLine());
+        int sheetsPerHour = int.Parse(Console.ReadLine());
+        int days = int.Parse(Console.ReadLine());
+
+        Console.WriteLine(sheets/sheetsPerHour/days);
+    }
+}
