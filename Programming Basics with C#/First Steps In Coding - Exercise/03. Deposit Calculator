@@ -1,0 +1,13 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double sum = double.Parse(Console.ReadLine());
+        int months = int.Parse(Console.ReadLine());
+        double interest = double.Parse(Console.ReadLine());
+        double finalAmount = sum + months * ((sum * (interest/100)) / 12);
+        Console.WriteLine(finalAmount);
+    }
+}
