@@ -1,0 +1,21 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int nylon = int.Parse(Console.ReadLine());
+        double paint = double.Parse(Console.ReadLine());
+        int liters = int.Parse(Console.ReadLine());
+        int hours = int.Parse(Console.ReadLine());
+
+        nylon += 2;
+        paint += paint * 0.1;
+
+        double materialsPrice = nylon * 1.50 + paint * 14.50 + liters * 5 + 0.4;
+        double servicePrice = hours * (materialsPrice * 0.3);
+        double fullPrice = materialsPrice + servicePrice;
+
+        Console.WriteLine(fullPrice);
+    }
+}
