@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        List<int> numbers = new List<int>();
+        string letters = "";
+
+        List<int> takeList = new List<int>();
+        List<int> skipList = new List<int>();
+
+        string result = "";
+
+        foreach (var letter in input)
+        {
+            if (char.IsDigit(letter))
+            {
+                numbers.Add(int.Parse(letter.ToString()));
+            }
+            else
+            {
+                letters +=letter;
+            }
+        }
+
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                takeList.Add(numbers[i]);
+            }
+            else
+            {
+                skipList.Add(numbers[i]);
+            }
+        }
+
+        for (int i = 0; i < takeList.Count; i++)
+        {
+            if (takeList[i] >= letters.Length) 
+            {
+                result += letters;
+                break;
+            }
+            else
+            {
+                result += letters.Substring(0, takeList[i]);
+            }
+            if (takeList[i] + skipList[i] >=letters.Length)
+            {
+                break;
+            }
+            else
+            {
+                letters = letters.Remove(0, takeList[i] + skipList[i]);
+            }
+        }
+        Console.WriteLine(result);
+    }
+}
