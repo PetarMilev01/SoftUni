@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> courses = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.None).ToList();
+        List<string> exercises = new List<string>();
+
+        string input = Console.ReadLine();
+        while (input != "course start")
+        {
+            string[] commands = input.Split(':').ToArray();
+            string command = commands[0];
+
+            if (command == "Add")
+            {
+                string courseName = commands[1];
+                if (!courses.Contains(courseName))
+                {
+                    courses.Add(courseName);
+                }
+            }
+            else if (command == "Insert")
+            {
+                string courseName = commands[1];
+                int index = int.Parse(commands[2]);
+                if (!courses.Contains(courseName))
+                {
+                    courses.Insert(index, courseName);
+                }
+            }
+            else if (command == "Remove")
+            {
+                string courseName = commands[1];
+                if (courses.Contains(courseName))
+                {
+                    courses.Remove(courseName);
+                    exercises.Remove(courseName);
+                }
+            }
+            else if (command == "Swap")
+            {
+                string firstCourse = commands[1];
+                string secondCourse = commands[2];
+                if (courses.Contains(firstCourse) && courses.Contains(secondCourse))
+                {
+                    int firstCourseIndex = courses.IndexOf(firstCourse);
+                    int secondCourseIndex = courses.IndexOf(secondCourse);
+                    courses[firstCourseIndex] = secondCourse;
+                    courses[secondCourseIndex] = firstCourse;
+                }
+            }
+            else if (command == "Exercise")
+            {
+                string courseName = commands[1];
+                if (courses.Contains(courseName))
+                {
+                    if (!exercises.Contains(courseName))
+                    {
+                        exercises.Add(courseName);
+                    }
+                }
+                else
+                {
+                    courses.Add(courseName);
+                    exercises.Add(courseName);
+                }
+            }
+            input = Console.ReadLine();
+        }
+        int counter = 1;
+        foreach (var course in courses)
+        {
+            Console.WriteLine($"{counter}.{course}");
+            if (exercises.Contains(course))
+            {
+                counter++;
+                Console.WriteLine($"{counter}.{course}-Exercise");
+            }
+            counter++;
+        }
+    }
+}
