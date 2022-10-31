@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> numbers = Console.ReadLine().Split(' ').ToList();
+        string input = Console.ReadLine();
+        string result = "";
+
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            int sum = 0;
+            string number = numbers[i];
+            for (int c = 0; c < number.Length; c++)
+            {
+                sum += int.Parse(number[c].ToString());
+            }
+            while (sum >= input.Length)
+            {
+                sum -= input.Length;
+            }
+            char letter = input[sum];
+            input = input.Remove(sum,1);
+            result += letter;
+        }
+        Console.WriteLine(result);
+    }
+}
