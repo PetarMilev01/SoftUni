@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, int> materials = new Dictionary<string, int>();
+        string input = Console.ReadLine();
+
+        while (input != "stop")
+        {
+            string materialName = input;
+            int quantity = int.Parse(Console.ReadLine());
+
+            if (materials.ContainsKey(materialName))
+            {
+                materials[materialName] += quantity;
+            }
+            else
+            {
+                materials.Add(materialName, quantity);
+            }
+            input = Console.ReadLine();
+        }
+        foreach (var material in materials)
+        {
+            Console.WriteLine($"{material.Key} -> {material.Value}");
+        }
+    }
+}
