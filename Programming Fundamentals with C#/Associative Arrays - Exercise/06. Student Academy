@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        Dictionary<string, List<double>> dict = new Dictionary<string, List<double>>();
+
+        for (int i = 0; i < n; i++)
+        {
+            string name = Console.ReadLine();
+            double grade = double.Parse(Console.ReadLine());
+
+            if (dict.ContainsKey(name))
+            {
+                dict[name].Add(grade);
+            }
+            else
+            {
+                dict.Add(name, new List<double> { grade });
+            }
+        }
+
+        foreach (var student in dict)
+        {
+            double avgGrade = student.Value.Average();
+            if (avgGrade>=4.50)
+            {
+                Console.WriteLine($"{student.Key} -> {avgGrade:0.00}");
+            }
+        }
+    }
+}
