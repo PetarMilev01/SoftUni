@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> elements = Console.ReadLine().Split(' ').ToList();
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+
+        foreach (var element in elements)
+        {
+            string current  = element.ToLower();
+            if (dict.ContainsKey(current))
+            {
+                dict[current]++;
+            }
+            else
+            {
+                dict.Add(current, 1);
+            }
+        }
+
+        foreach (var element in dict)
+        {
+            if (element.Value % 2 != 0)
+            {
+                Console.Write(element.Key + " ");
+            }
+        }
+    }
+}
