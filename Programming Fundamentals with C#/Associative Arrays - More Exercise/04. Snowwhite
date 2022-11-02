@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+        string input = Console.ReadLine();
+
+        while (input != "Once upon a time")
+        {
+            //Pesho <:> Red <:> 2000
+            string[] commands = input.Split(new string[] { " <:> " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+            string name = commands[0];
+            string color = commands[1];
+            int points = int.Parse(commands[2]);
+
+            string ID = name + ":" + color;
+
+            if (!dict.ContainsKey(ID))
+            {
+                dict.Add(ID, points);
+            }
+            else
+            {
+                dict[ID] = Math.Max(dict[ID], points);
+            }
+            
+            input = Console.ReadLine();
+        }
+
+        foreach (var pair in dict.OrderByDescending(x=>x.Value).ThenByDescending(x=>dict.Where(y =>y.Key.Split(':')[1] == x.Key.Split(':')[1]).Count()))
+        {
+            Console.WriteLine($"({pair.Key.Split(':')[1]}) {pair.Key.Split(':')[0]} <-> {pair.Value}");
+        }
+    }
+}
