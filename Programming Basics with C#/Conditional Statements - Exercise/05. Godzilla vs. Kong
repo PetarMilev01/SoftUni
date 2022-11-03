@@ -1,0 +1,32 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double budget = double.Parse(Console.ReadLine());
+        int people = int.Parse(Console.ReadLine());
+        double dressPricePerHead = double.Parse(Console.ReadLine());
+
+        double decourPrice = budget * 0.1;
+        double dressPrice = people * dressPricePerHead;
+
+        if (people>150)
+        {
+            dressPrice *= 0.9;
+        }
+
+        double finalPrice = decourPrice + dressPrice;
+
+        if (finalPrice>budget)
+        {
+            Console.WriteLine($"Not enough money!");
+            Console.WriteLine($"Wingard needs {finalPrice-budget:0.00} leva more.");
+        }
+        else
+        {
+            Console.WriteLine("Action!");
+            Console.WriteLine($"Wingard starts filming with {budget-finalPrice:0.00} leva left.");
+        }
+    }
+}
