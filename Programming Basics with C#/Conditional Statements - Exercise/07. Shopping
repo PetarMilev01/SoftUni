@@ -1,0 +1,32 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double budget = double.Parse(Console.ReadLine());
+        int videoCards = int.Parse(Console.ReadLine());
+        int processors = int.Parse(Console.ReadLine());
+        int ramMemory = int.Parse(Console.ReadLine());
+
+        double videoCardsPrice = videoCards * 250;
+        double processorsPrice = videoCardsPrice * 0.35*processors;
+        double ramMemoryPrice = videoCardsPrice * 0.1*ramMemory;
+
+        double price = videoCardsPrice + processorsPrice + ramMemoryPrice;
+
+        if (videoCards>processors)
+        {
+            price *= 0.85;
+        }
+
+        if (price<=budget)
+        {
+            Console.WriteLine($"You have {budget-price:0.00} leva left!");
+        }
+        else
+        {
+            Console.WriteLine($"Not enough money! You need {price-budget:0.00} leva more!");
+        }
+    }
+}
