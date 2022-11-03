@@ -1,0 +1,32 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string figure = Console.ReadLine();
+
+        if (figure == "square")
+        {
+            double side = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{side*side:0.000}");
+        }
+        else if (figure == "rectangle")
+        {
+            double oneSide = double.Parse(Console.ReadLine());
+            double secondSide = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{oneSide*secondSide:0.000}");
+        }
+        else if (figure == "circle")
+        {
+            double radius = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{Math.PI*radius*radius:0.000}");
+        }
+        else if(figure=="triangle")
+        {
+            double oneSide = double.Parse(Console.ReadLine());
+            double secondSide = double.Parse(Console.ReadLine());
+            Console.WriteLine($"{0.5*oneSide*secondSide:0.000}");
+        }
+    }
+}
