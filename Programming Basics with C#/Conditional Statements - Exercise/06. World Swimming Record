@@ -1,0 +1,25 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double worldRecord = double.Parse(Console.ReadLine());
+        double distance = double.Parse(Console.ReadLine());
+        double secondsPerMeter = double.Parse(Console.ReadLine());
+
+        double performance = distance * secondsPerMeter;
+        double everyFifteenMeters = Math.Floor((distance / 15));
+        performance += everyFifteenMeters * 12.5;
+
+        if (worldRecord>performance)
+        {
+            Console.WriteLine($"Yes, he succeeded! The new world record is {performance:0.00} seconds.");
+        }
+        else
+        {
+            Console.WriteLine($"No, he failed! He was {performance-worldRecord:0.00} seconds slower.");
+        }
+
+    }
+}
