@@ -1,0 +1,12 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int one = int.Parse(Console.ReadLine());
+        int two = int.Parse(Console.ReadLine());
+
+        Console.WriteLine(Math.Max(one,two)) ;
+    }
+}
