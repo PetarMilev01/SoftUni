@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string[] words = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.None).ToArray();
+
+        foreach (var word in words)
+        {
+            if (word.Length>=3 && word.Length<=16)
+            {
+                bool isGood = true;
+                foreach (var letter in word)
+                {
+                    if (!char.IsLetterOrDigit(letter) && letter != '-' && letter != '_')
+                    {
+                        isGood = false;
+                        break;
+                    }
+                }
+                if (isGood)
+                {
+                    Console.WriteLine(word);
+                }
+            }
+        }
+    }
+}
