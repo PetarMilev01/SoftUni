@@ -1,0 +1,91 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string product = Console.ReadLine();
+        string city = Console.ReadLine();
+        double amount = double.Parse(Console.ReadLine());
+
+        double price = 0.0;
+
+        if (product == "coffee")
+        {
+            if (city == "Sofia")
+            {
+                price = 0.5 * amount;
+            }
+            else if (city == "Plovdiv")
+            {
+                price = 0.4 * amount;
+            }
+            else
+            {
+                price = 0.45 * amount;
+            }
+        }
+        else if (product == "water")
+        {
+            if (city == "Sofia")
+            {
+                price = 0.8 * amount;
+            }
+            else if (city == "Plovdiv")
+            {
+                price = 0.7 * amount;
+            }
+            else
+            {
+                price = 0.7 * amount;
+            }
+        }
+        else if (product == "beer")
+        {
+            if (city == "Sofia")
+            {
+                price = 1.20 * amount;
+            }
+            else if (city == "Plovdiv")
+            {
+                price = 1.15 * amount;
+            }
+            else
+            {
+                price = 1.1 * amount;
+            }
+        }
+        else if (product == "sweets")
+        {
+            if (city == "Sofia")
+            {
+                price = 1.45 * amount;
+            }
+            else if (city == "Plovdiv")
+            {
+                price = 1.30 * amount;
+            }
+            else
+            {
+                price = 1.35 * amount;
+            }
+        }
+        else
+        {
+            if (city == "Sofia")
+            {
+                price = 1.60 * amount;
+            }
+            else if (city == "Plovdiv")
+            {
+                price = 1.50 * amount;
+            }
+            else
+            {
+                price = 1.55 * amount;
+            }
+        }
+
+        Console.WriteLine(price);
+    }
+}
