@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        int slashIndex = input.LastIndexOf('\\')+1;
+        int pointIndex = input.LastIndexOf('.')+1;
+
+        string fileName = input.Substring(slashIndex,pointIndex-slashIndex-1);
+        string extension = input.Substring(pointIndex);
+
+        Console.WriteLine($"File name: {fileName}");
+        Console.WriteLine($"File extension: {extension}");
+    }
+}
