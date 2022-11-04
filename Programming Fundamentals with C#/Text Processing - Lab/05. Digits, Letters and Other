@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string text = Console.ReadLine();
+
+        string numbers = "";
+        string letters = "";
+        string symbols = "";
+
+        foreach (var item in text)
+        {
+            if (char.IsDigit(item))
+            {
+                numbers += item;
+            }
+            else if (char.IsLetter(item))
+            {
+                letters += item;
+            }
+            else
+            {
+                symbols += item;
+            }
+        }
+        Console.WriteLine(numbers);
+        Console.WriteLine(letters);
+        Console.WriteLine(symbols);
+    }
+}
