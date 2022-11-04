@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string[] parts = Console.ReadLine().Split(new [] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+        double sum = 0.0;
+
+        foreach (var part in parts)
+        {
+            char leftLetter = char.Parse(part[0].ToString());
+            char rightLetter = char.Parse(part[part.Length - 1].ToString());
+            double number = int.Parse(part.Substring(1, part.Length - 2));
+
+            double localSum = 0.0;
+            if (char.IsUpper(leftLetter))
+            {
+                localSum = number / ((int)leftLetter - 64);
+            }
+            else
+            {
+                localSum = number * ((int)leftLetter - 96);
+            }
+
+            if (char.IsUpper(rightLetter))
+            {
+                localSum -= ((int)rightLetter - 64);
+            }
+            else
+            {
+                localSum += ((int)rightLetter - 96);
+            }
+            sum += localSum;
+        }
+        Console.WriteLine($"{sum:0.00}");
+    }
+}
