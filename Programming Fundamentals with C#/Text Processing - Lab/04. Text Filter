@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> words = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.None).ToList();
+        string text = Console.ReadLine();
+
+        foreach (var word in words)
+        {
+            if (text.Contains(word))
+            {
+                text = text.Replace(word, new string('*', word.Length));
+            }
+        }
+        Console.WriteLine(text);
+    }
+}
