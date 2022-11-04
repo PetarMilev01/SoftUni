@@ -1,0 +1,93 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string fruit = Console.ReadLine();
+        string weekDay = Console.ReadLine();
+        double quantity = double.Parse(Console.ReadLine());
+
+        double price = 0.0;
+
+        if (weekDay == "Monday" || weekDay == "Tuesday" || weekDay == "Wednesday" || weekDay == "Thursday" || weekDay == "Friday")
+        {
+            if (fruit == "banana")
+            {
+                price = 2.5 * quantity;
+            }
+            else if (fruit == "apple")
+            {
+                price = 1.20 * quantity;
+            }
+            else if (fruit == "orange")
+            {
+                price = 0.85 * quantity;
+            }
+            else if (fruit == "grapefruit")
+            {
+                price = 1.45 * quantity;
+            }
+            else if (fruit == "kiwi")
+            {
+                price = 2.70 * quantity;
+            }
+            else if (fruit == "pineapple")
+            {
+                price = 5.50 * quantity;
+            }
+            else if (fruit == "grapes")
+            {
+                price = 3.85 * quantity;
+            }
+            else
+            {
+                Console.WriteLine("error");
+                return;
+            }
+        }
+        else if(weekDay == "Saturday" || weekDay == "Sunday")
+        {
+            if (fruit == "banana")
+            {
+                price = 2.7 * quantity;
+            }
+            else if (fruit == "apple")
+            {
+                price = 1.25 * quantity;
+            }
+            else if (fruit == "orange")
+            {
+                price = 0.9 * quantity;
+            }
+            else if (fruit == "grapefruit")
+            {
+                price = 1.60 * quantity;
+            }
+            else if (fruit == "kiwi")
+            {
+                price = 3 * quantity;
+            }
+            else if (fruit == "pineapple")
+            {
+                price = 5.60 * quantity;
+            }
+            else if (fruit == "grapes")
+            {
+                price = 4.20 * quantity;
+            }
+            else
+            {
+                Console.WriteLine("error");
+                return;
+            }
+        }
+        else
+        {
+            Console.WriteLine("error");
+            return;
+        }
+
+        Console.WriteLine($"{price: 0.00}");
+    }
+}
