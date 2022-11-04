@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string[] elements = Console.ReadLine().Split(' ').ToArray();
+        string firstWord = elements[0];
+        string secondWord = elements[1];
+
+        int minLength = Math.Min(firstWord.Length,secondWord.Length);
+        int maxLength = Math.Max(firstWord.Length, secondWord.Length);
+        int sum = 0;
+
+        for (int i = 0; i < minLength; i++)
+        {
+            sum += firstWord[i] * secondWord[i];
+        }
+
+        if (firstWord.Length>secondWord.Length)
+        {
+            for (int i = minLength; i < firstWord.Length; i++)
+            {
+                sum += firstWord[i];
+            }
+        }
+        else if (secondWord.Length > firstWord.Length)
+        {
+            for (int i = minLength; i < secondWord.Length; i++)
+            {
+                sum += secondWord[i];
+            }
+        }
+        Console.WriteLine(sum);
+    }
+}
