@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string text = Console.ReadLine();
+        foreach (var letter in text)
+        {
+            Console.Write((char)(letter+3));
+        }
+    }
+}
