@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        string phoneNumbers = Console.ReadLine();
+
+        string pattern = @"(\+359([ -]))2\2\d{3}\2\d{4}\b";
+
+        MatchCollection matches = Regex.Matches(phoneNumbers,pattern);
+
+        Console.WriteLine(string.Join(", ",matches));
+    }
+}
