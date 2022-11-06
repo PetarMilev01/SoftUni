@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        int days = int.Parse(Console.ReadLine());
+        decimal dailyPlunder = decimal.Parse(Console.ReadLine());
+        decimal expectedPlunder = decimal.Parse(Console.ReadLine());
+        decimal result = 0.0m;
+
+        for (int i = 1; i <= days; i++)
+        {
+            result += dailyPlunder;
+            if (i % 3 == 0) 
+            {
+                result += dailyPlunder / 2;
+            }
+            if (i % 5 == 0)
+            {
+                result = result * 0.7m;
+            }
+        }
+        if (result>=expectedPlunder)
+        {
+            Console.WriteLine($"Ahoy! {result:0.00} plunder gained.");
+        }
+        else
+        {
+            Console.WriteLine($"Collected only {result*100/expectedPlunder:0.00}% of the plunder.");
+        }
+    }
+}
