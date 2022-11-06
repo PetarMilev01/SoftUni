@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        string namePattern = @"%([A-Z][a-z]+)%";
+        string foodPattern = @"<(\w+)>";
+        string quantityPattern = @"\|[^|$%.]*(\d+)[^|$%.]*\|"; 
+        string pricePattern = @"(\d+\.?\d+)\$"; 
+
+        double sum = 0.0;
+
+        string input = Console.ReadLine();
+        while (input != "end of shift")
+        {
+            Match nameMatch = Regex.Match(input, namePattern);
+            Match foodMatch = Regex.Match(input, foodPattern);
+            Match quantityMatch = Regex.Match(input, quantityPattern);
+            Match priceMatch = Regex.Match(input, pricePattern);
+
+            if (nameMatch.Success && foodMatch.Success && quantityMatch.Success && priceMatch.Success)
+            {
+                string name = nameMatch.Groups[1].ToString();
+                string food = foodMatch.Groups[1].ToString();
+                int quantity = int.Parse(quantityMatch.Groups[1].ToString());
+                double price = double.Parse(priceMatch.Groups[1].ToString());
+                Console.WriteLine($"{name}: {food} - {quantity*price:0.00}");
+                sum += quantity * price;
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine($"Total income: {sum:0.00}");
+    }
+}
