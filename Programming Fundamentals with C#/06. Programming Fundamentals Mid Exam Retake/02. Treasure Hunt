@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        List<string> loots = Console.ReadLine().Split('|').ToList();
+        string input = Console.ReadLine();
+
+        while (input != "Yohoho!")
+        {
+            List<string> parts = input.Split(' ' , StringSplitOptions.RemoveEmptyEntries).ToList();
+            string command = parts[0];
+
+            if (command == "Loot")
+            {
+                parts.RemoveAt(0);
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    if (!loots.Contains(parts[i]))
+                    {
+                        loots.Insert(0, parts[i]);
+                    }
+                }
+            }
+            else if (command == "Drop")
+            {
+                int index = int.Parse(parts[1]);
+                if (index>=0 && index<loots.Count-1)
+                {
+                    string loot = loots[index];
+                    loots.RemoveAt(index);
+                    loots.Add(loot);
+                }
+            }
+            else if (command == "Steal")
+            {
+                int count = int.Parse(parts[1]);
+                if (count>=loots.Count)
+                {
+                    Console.WriteLine(string.Join(", ",loots));
+                    loots.Clear();
+                }
+                else
+                {
+                    List<string> stolen = new List<string>();
+                    for (int i = 0; i < count; i++)
+                    {
+                        stolen.Insert(0,loots[loots.Count - 1]);
+                        loots.RemoveAt(loots.Count - 1);
+                    }
+                    Console.WriteLine(string.Join(", ",stolen));
+                }
+            }
+            input = Console.ReadLine();
+        }
+        if (loots.Count==0)
+        {
+            Console.WriteLine($"Failed treasure hunt.");
+        }
+        else
+        {
+            double allLength = 0.0;
+            foreach (var loot in loots)
+            {
+                allLength += loot.Length;
+            }
+            Console.WriteLine($"Average treasure gain: {allLength / loots.Count:0.00} pirate credits.");
+        }
+    }
+}
