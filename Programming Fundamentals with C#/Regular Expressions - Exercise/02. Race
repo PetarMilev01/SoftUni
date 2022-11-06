@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        string[] names = Console.ReadLine().Split(new string[] { ", " },StringSplitOptions.RemoveEmptyEntries).ToArray();
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+
+        foreach (var name in names)
+        {
+            dict.Add(name, 0);
+        }
+
+        string input = Console.ReadLine();
+        while (input != "end of race")
+        {
+            string name = "";
+            foreach (var letter in input)
+            {
+                if (char.IsLetter(letter))
+                {
+                    name += letter;
+                }
+            }
+            if (names.Contains(name))
+            {
+                int sum = 0;
+
+                foreach (var letter in input)
+                {
+                    if (char.IsDigit(letter))
+                    {
+                        sum += int.Parse(letter.ToString());
+                    }
+                }
+                dict[name] += sum;
+            }
+            input = Console.ReadLine();
+        }
+
+        int counter = 1;
+        foreach (var player in dict.OrderByDescending(x=>x.Value).Take(3))
+        {
+            if (counter==1)
+            {
+                Console.WriteLine($"1st place: {player.Key}");
+            }
+            else if (counter == 2)
+            {
+                Console.WriteLine($"2nd place: {player.Key}");
+            }
+            else if (counter == 3)
+            {
+                Console.WriteLine($"3rd place: {player.Key}");
+            }
+            counter++;
+        }
+    }
+}
