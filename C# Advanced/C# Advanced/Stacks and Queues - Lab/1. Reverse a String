@@ -1,1 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
+public class Program
+{
+    static void Main()
+    {
+        Stack<char> stack = new Stack<char>(Console.ReadLine());
+        while (stack.Count>0)
+        {
+            Console.Write(stack.Pop());
+        }
+    }
+}
