@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Program
+{
+    static void Main()
+    {
+        Stack<int> stack = new Stack<int>(Console.ReadLine().Split(' ').Select(int.Parse));
+        string input = Console.ReadLine().ToLower();
+
+        while (input != "end")
+        {
+            string[] parts = input.Split(' ').ToArray();
+            string command = parts[0];
+            if (command == "add")
+            {
+                int firstNumber = int.Parse(parts[1]);
+                int secondNumber = int.Parse(parts[2]);
+                stack.Push(firstNumber);
+                stack.Push(secondNumber);
+            }
+            else if (command == "remove")
+            {
+                int count = int.Parse(parts[1]);
+                if (count<=stack.Count)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        stack.Pop();
+                    }
+                }
+            }
+            input = Console.ReadLine().ToLower();
+        }
+        Console.WriteLine($"Sum: {stack.Sum()}");
+    }
+}
