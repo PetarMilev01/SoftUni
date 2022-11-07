@@ -1,0 +1,55 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        int examHour = int.Parse(Console.ReadLine());
+        int examMinutes = int.Parse(Console.ReadLine());
+        int arrivalHour = int.Parse(Console.ReadLine());
+        int arrivalMinutes = int.Parse(Console.ReadLine());
+
+        examMinutes += examHour * 60;
+        arrivalMinutes += arrivalHour * 60;
+
+        int difference = Math.Abs(examMinutes - arrivalMinutes);
+
+        if (difference == 0)
+        {
+            Console.WriteLine("On time");
+        }
+        else if (examMinutes>arrivalMinutes) //earlier
+        {
+            if (examMinutes-arrivalMinutes<=30)
+            {
+                Console.WriteLine("On time");
+                Console.WriteLine($"{difference} minutes before the start");
+            }
+            else
+            {
+                Console.WriteLine("Early");
+                if (difference<=59)
+                {
+                    Console.WriteLine($"{difference} minutes before the start");
+                }
+                else
+                {
+                    Console.WriteLine($"{difference/60}:{difference%60:00} hours before the start");
+                }
+            }
+        }
+        else //late
+        {
+            Console.WriteLine("Late");
+            if (difference<=59)
+            {
+                Console.WriteLine($"{difference} minutes after the start");
+            }
+            else
+            {
+                Console.WriteLine($"{difference/60}:{difference%60:00} hours after the start");
+
+            }
+        }
+    }
+}
