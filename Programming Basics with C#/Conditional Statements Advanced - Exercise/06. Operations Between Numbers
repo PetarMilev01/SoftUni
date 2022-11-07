@@ -1,0 +1,67 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        double first = int.Parse(Console.ReadLine());
+        double second = int.Parse(Console.ReadLine());
+        string sign = Console.ReadLine();
+
+        if (sign == "+")
+        {
+            if ((first+second) % 2 == 0)
+            {
+                Console.WriteLine($"{first} + {second} = {first+second} - even");
+            }
+            else
+            {
+                Console.WriteLine($"{first} + {second} = {first + second} - odd");
+            }
+        }
+        else if (sign == "-")
+        {
+            if ((first - second) % 2 == 0)
+            {
+                Console.WriteLine($"{first} - {second} = {first - second} - even");
+            }
+            else
+            {
+                Console.WriteLine($"{first} - {second} = {first - second} - odd");
+            }
+        }
+        else if (sign == "*")
+        {
+            if ((first * second) % 2 == 0)
+            {
+                Console.WriteLine($"{first} * {second} = {first * second} - even");
+            }
+            else
+            {
+                Console.WriteLine($"{first} * {second} = {first * second} - odd");
+            }
+        }
+        else if (sign == "/")
+        {
+            if (second == 0)
+            {
+                Console.WriteLine($"Cannot divide {first} by zero");
+            }
+            else
+            {
+                Console.WriteLine($"{first} / {second} = {first / second:0.00}");
+            }
+        }
+        else if (sign == "%")
+        {
+            if (second == 0)
+            {
+                Console.WriteLine($"Cannot divide {first} by zero");
+            }
+            else
+            {
+                Console.WriteLine($"{first} % {second} = {first % second}");
+            }
+        }
+    }
+}
