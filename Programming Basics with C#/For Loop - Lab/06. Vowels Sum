@@ -1,0 +1,35 @@
+using System;
+
+public class Program
+{
+    static void Main()
+    {
+        string word = Console.ReadLine();
+        int counter = 0;
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            if (word[i] == 'a')
+            {
+                counter++;
+            }
+            else if (word[i] == 'e')
+            {
+                counter += 2;
+            }
+            else if (word[i]=='i')
+            {
+                counter += 3;
+            }
+            else if (word[i]=='o')
+            {
+                counter += 4;
+            }
+            else if (word[i] == 'u')
+            {
+                counter += 5;
+            }
+        }
+        Console.WriteLine(counter);
+    }
+}
