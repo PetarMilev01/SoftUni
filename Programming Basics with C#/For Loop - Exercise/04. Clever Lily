@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int liliAge = int.Parse(Console.ReadLine());
+        double laudryPrice = double.Parse(Console.ReadLine());
+        int toyPrice = int.Parse(Console.ReadLine());
+
+        int ageCounter = 1;
+        int oddYearsCounter = 0;
+        double liliBudget = 0.0;
+
+        for (int i = 1; i <= liliAge; i++)
+        {
+            if (i % 2 == 0) 
+            {
+                liliBudget += (ageCounter * 10)-1;
+                ageCounter++;
+            }
+            else
+            {
+                oddYearsCounter++;
+            }
+        }
+
+        liliBudget += oddYearsCounter * toyPrice;
+
+        if (liliBudget >=laudryPrice)
+        {
+            Console.WriteLine($"Yes! {liliBudget-laudryPrice:0.00}");
+        }
+        else
+        {
+            Console.WriteLine($"No! {laudryPrice-liliBudget:0.00}");
+        }
+
+    }
+}
