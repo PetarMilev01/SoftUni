@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int greenlight = int.Parse(Console.ReadLine());
+        int freeWindow = int.Parse(Console.ReadLine());
+        Queue<string> carsToGo = new Queue<string>();
+        List<string> successfullyPassedCars = new List<string>();
+        string input = Console.ReadLine();
+
+        while (input != "END")
+        {
+            if (input == "green")
+            {
+                int currentGreenTime = greenlight;
+                int freeWindowLeft = freeWindow;
+                while (carsToGo.Count > 0 && currentGreenTime > 0)
+                {
+                    string currentCar = carsToGo.Dequeue();
+                    if (currentGreenTime >= currentCar.Length)
+                    {
+                        currentGreenTime -= currentCar.Length;
+                        successfullyPassedCars.Add(currentCar);
+                    }
+                    else
+                    {
+                        
+                        if (currentCar.Length - (currentGreenTime + freeWindowLeft) > 0) //crash
+                        {
+
+                            string left = currentCar.Remove(0, currentGreenTime + freeWindowLeft);
+                            Console.WriteLine("A crash happened!");
+                            Console.WriteLine($"{currentCar} was hit at {left[0]}.");
+                            return;
+                        }
+                        else
+                        {
+                            currentGreenTime = 0;
+                            successfullyPassedCars.Add(currentCar);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                carsToGo.Enqueue(input);
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine("Everyone is safe.");
+        Console.WriteLine($"{successfullyPassedCars.Count} total cars passed the crossroads.");
+    }
+}
