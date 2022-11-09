@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string actorName = Console.ReadLine();
+        double actorPoints = double.Parse(Console.ReadLine());
+        int people = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < people; i++)
+        {
+            string name = Console.ReadLine();
+            double points =double.Parse(Console.ReadLine());
+            actorPoints += (name.Length * points) / 2;
+            if (actorPoints>1250.5)
+            {
+                Console.WriteLine($"Congratulations, {actorName} got a nominee for leading role with {actorPoints:0.0}!");
+                return;
+            }
+        }
+        Console.WriteLine($"Sorry, {actorName} you need {1250.5-actorPoints:0.0} more!");
+    }
+}
