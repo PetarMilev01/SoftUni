@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        List<int> numbers = new List<int>(n);
+
+        for (int i = 0; i < n; i++)
+        {
+            numbers.Add(int.Parse(Console.ReadLine()));
+        }
+
+        int biggestNumber = numbers.Max();
+        numbers.Remove(numbers.Max());
+        int sumNumbers = numbers.Sum();
+        if (biggestNumber == sumNumbers)
+        {
+            Console.WriteLine("Yes");
+            Console.WriteLine($"Sum = {biggestNumber}");
+        }
+        else
+        {
+            Console.WriteLine("No");
+            Console.WriteLine($"Diff = {Math.Abs(biggestNumber-sumNumbers)}");
+        }
+        
+    }
+}
