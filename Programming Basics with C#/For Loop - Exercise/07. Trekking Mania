@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int groupsCount = int.Parse(Console.ReadLine());
+
+        int allPeople = 0;
+        int mussalaGroup = 0;
+        int montblancGroup = 0;
+        int kiliGroup = 0;
+        int K2Group = 0;
+        int everestGroup = 0;
+
+
+        for (int i = 0; i < groupsCount; i++)
+        {
+            int people = int.Parse(Console.ReadLine());
+            allPeople += people;
+            if (people<=5)
+            {
+                mussalaGroup += people;
+            }
+            else if (people>=6 && people<=12)
+            {
+                montblancGroup += people;
+            }
+            else if (people>=13 && people<=25)
+            {
+                kiliGroup += people; 
+            }
+            else if (people>=26 && people<=40)
+            {
+                K2Group+=people;
+            }
+            else if (people>40)
+            {
+                everestGroup+=people;
+            }
+        }
+
+        Console.WriteLine($"{(double)mussalaGroup * 100 / allPeople:0.00}%");
+        Console.WriteLine($"{(double)montblancGroup * 100 / allPeople:0.00}%");
+        Console.WriteLine($"{(double)kiliGroup * 100 / allPeople:0.00}%");
+        Console.WriteLine($"{(double)K2Group * 100 / allPeople:0.00}%");
+        Console.WriteLine($"{(double)everestGroup * 100 / allPeople:0.00}%");
+    }
+}
