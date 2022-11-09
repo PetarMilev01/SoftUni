@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Stack<int> stack = new Stack<int>(Console.ReadLine().Split(' ').Select(int.Parse));
+        int rackCapacity = int.Parse(Console.ReadLine());
+        int racksNeeded = 0;
+        int currentRackCapacity = 0;
+        while (stack.Count > 0) 
+        {
+            if (currentRackCapacity + stack.Peek() > rackCapacity)
+            {
+                racksNeeded++;
+                currentRackCapacity = 0;
+            }
+            else
+            {
+                currentRackCapacity += stack.Pop();
+            }
+        }
+        if (currentRackCapacity>0)
+        {
+            racksNeeded++;
+        }
+        Console.WriteLine(racksNeeded);
+    }
+}
