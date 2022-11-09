@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[] pumps = new int[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            pumps[i] = numbers[0] - numbers[1];
+        }
+
+        int petrolTank = 0;
+        int position = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            petrolTank += pumps[i];
+
+            if (petrolTank < 0) 
+            {
+                petrolTank = 0;
+                position = i + 1;
+            }
+        }
+        Console.WriteLine(position);
+    }
+}
