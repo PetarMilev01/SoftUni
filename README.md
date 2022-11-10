@@ -1,2 +1,2 @@
 # SoftUni
-SoftUni Homeworks from my SoftUni courses
+SoftUni Homeworks From My SoftUni courses
