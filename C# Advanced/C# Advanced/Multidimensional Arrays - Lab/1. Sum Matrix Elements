@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] info = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+        int rows = info[0];
+        int cols = info[1];
+        int[,] array = new int[rows, cols];
+
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            int[] numbers = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            for (int c = 0; c < array.GetLength(1); c++)
+            {
+                array[i, c] = numbers[c];
+            }
+        }
+        Console.WriteLine(array.GetLength(0));
+        Console.WriteLine(array.GetLength(1));
+        Console.WriteLine(array.Cast<int>().Sum());
+    }
+}
