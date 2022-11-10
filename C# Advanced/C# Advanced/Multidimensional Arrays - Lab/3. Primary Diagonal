@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[,] arr = new int[n, n];
+
+        for (int i = 0; i < n; i++)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            for (int c = 0; c < n; c++)
+            {
+                arr[i, c] = numbers[c];
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            sum += arr[i, i];
+        }
+        Console.WriteLine(sum);
+    }
+}
