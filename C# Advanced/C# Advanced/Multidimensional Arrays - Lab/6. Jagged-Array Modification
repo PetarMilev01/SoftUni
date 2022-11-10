@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[,] arr = new int[n, n];
+
+        for (int i = 0; i < n; i++)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            for (int c = 0; c < n; c++)
+            {
+                arr[i, c] = numbers[c];
+            }
+        }
+
+        string input = Console.ReadLine();
+        while (input != "END")
+        {
+            string[] info = input.Split(' ').ToArray();
+            string command = info[0];
+            int row = int.Parse(info[1]);
+            int col = int.Parse(info[2]);
+            int quantity = int.Parse(info[3]);
+            if (row < 0 || row >= n || col < 0 || col >= n) 
+            {
+                Console.WriteLine($"Invalid coordinates");
+            }
+            else
+            {
+                if (command == "Add")
+                {
+                    arr[row, col] += quantity;
+                }
+                else if (command == "Subtract")
+                {
+                    arr[row, col] -= quantity;
+                }
+            }
+            input = Console.ReadLine();
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for (int c = 0; c < n; c++)
+            {
+                Console.Write(arr[i,c] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
