@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        double allMoney = 0.0;
+
+        while (input != "NoMoreMoney")
+        {
+            double amount = double.Parse(input);
+            if (amount>0)
+            {
+                Console.WriteLine($"Increase: {amount:0.00}");
+                allMoney += amount;
+            }
+            else
+            {
+                Console.WriteLine("Invalid operation!");
+                break;
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine($"Total: {allMoney:0.00}");
+    }
+}
