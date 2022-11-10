@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] info = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+        int rows = info[0];
+        int cols = info[1];
+        int[,] array = new int[rows, cols];
+
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            int[] row = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            for (int c = 0; c < array.GetLength(1); c++)
+            {
+                array[i, c] = row[c];
+            }
+        }
+
+        for (int col = 0; col < array.GetLength(1); col++)
+        {
+            int sum = 0;
+            for (int row = 0; row < array.GetLength(0); row++)
+            {
+                sum += array[row, col];
+            }
+            Console.WriteLine(sum);
+        }
+    }
+}
