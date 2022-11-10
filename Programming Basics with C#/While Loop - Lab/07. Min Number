@@ -1,0 +1,19 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        List<int> numbers = new List<int>();
+        string input = Console.ReadLine();
+
+        while (input != "Stop")
+        {
+            numbers.Add(int.Parse(input));
+            input = Console.ReadLine();
+        }
+        Console.WriteLine(numbers.Min());
+    }
+}
