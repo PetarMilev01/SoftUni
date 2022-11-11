@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int first = int.Parse(Console.ReadLine());
+        int second = int.Parse(Console.ReadLine());
+        int wantedNumber = int.Parse(Console.ReadLine());
+        int counter = 0;
+
+        for (int i = first; i <= second; i++)
+        {
+            for (int c = first; c <= second; c++)
+            {
+                counter++;
+                if (i+c == wantedNumber)
+                {
+                    Console.WriteLine($"Combination N:{counter} ({i} + {c} = {wantedNumber})");
+                    return;
+                }
+            }
+        }
+        Console.WriteLine($"{counter} combinations - neither equals {wantedNumber}");
+    }
+}
