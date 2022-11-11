@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] size = Console.ReadLine().Split(new char[] { ' ' },StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+        int rows = size[0];
+        int cols = size[1];
+        int[,] array = new int[rows, cols];
+        int bestSum = 0;
+        int bestRow = 0;
+        int bestCol = 0;
+
+        for (int i = 0; i < rows; i++)
+        {
+            int[] input = Console.ReadLine().Split(new char[] { ' ' },StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            for (int c = 0; c < cols; c++)
+            {
+                array[i, c] = input[c];
+            }
+        }
+
+        for (int i = 0; i < array.GetLength(0) - 2; i++) 
+        {
+            for (int c = 0; c < array.GetLength(1) - 2; c++) 
+            {
+                int currentSum = array[i, c] + array[i, c + 1] + array[i, c + 2] +
+                                array[i + 1, c] + array[i + 1, c + 1] + array[i + 1, c + 2] +
+                                array[i + 2, c] + array[i + 2, c + 1] + array[i + 2, c + 2];
+                if (currentSum>bestSum)
+                {
+                    bestSum = currentSum;
+                    bestRow = i;
+                    bestCol = c;
+                }
+            }
+        }
+
+        Console.WriteLine($"Sum = {bestSum}");
+        Console.WriteLine($"{array[bestRow, bestCol]} {array[bestRow, bestCol + 1]} {array[bestRow, bestCol + 2]}");
+        Console.WriteLine($"{array[bestRow + 1, bestCol]} {array[bestRow + 1, bestCol + 1]} {array[bestRow + 1, bestCol + 2]}");
+        Console.WriteLine($"{array[bestRow + 2, bestCol]} {array[bestRow + 2, bestCol + 1]} {array[bestRow + 2, bestCol + 2]}");
+    }
+}
