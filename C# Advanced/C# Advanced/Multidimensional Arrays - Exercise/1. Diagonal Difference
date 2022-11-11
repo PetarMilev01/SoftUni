@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int[,] arr = new int[n, n];
+
+        for (int i = 0; i < arr.GetLength(0); i++)
+        {
+            int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            for (int c = 0; c < numbers.Length; c++)
+            {
+                arr[i, c] = numbers[c];
+            }
+        }
+        int leftDiagonal = 0;
+        int rightDiagonal = 0;
+
+        for (int i = 0; i < arr.GetLength(0); i++)
+        {
+            leftDiagonal += arr[i, i];
+        }
+
+        for (int row = 0,col = arr.GetLength(0)-1; row < arr.GetLength(0); row++,col--)
+        {
+            rightDiagonal += arr[row, col];
+        }
+        Console.WriteLine(Math.Abs(leftDiagonal-rightDiagonal));
+    }
+}
