@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] size = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+        int rows = size[0];
+        int cols = size[1];
+        string[,] array = new string[rows, cols];
+
+        string originalWord = Console.ReadLine();
+        string currentWord = originalWord;
+
+        for (int i = 0; i < rows; i++)
+        {
+            if (currentWord.Length == 0)
+            {
+                currentWord = originalWord;
+            }
+            if (i % 2 == 0) 
+            {
+                for (int c = 0; c < cols; c++)
+                {
+                    array[i, c] = currentWord[0].ToString();
+                    currentWord = currentWord.Remove(0, 1);
+                    if (currentWord.Length == 0)
+                    {
+                        currentWord = originalWord;
+                    }
+                }
+            }
+            else
+            {
+                for (int c = cols - 1; c >= 0; c--) 
+                {
+                    array[i, c] = currentWord[0].ToString();
+                    currentWord = currentWord.Remove(0, 1);
+                    if (currentWord.Length==0)
+                    {
+                        currentWord = originalWord;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int c = 0; c < array.GetLength(1); c++)
+            {
+                Console.Write($"{array[i,c]}");
+            }
+            Console.WriteLine();
+        }
+    }
+}
