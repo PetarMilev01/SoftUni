@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] size = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        int rows = size[0];
+        int cols = size[1];
+        string[,] array = new string[rows, cols];
+        int counter = 0;
+
+        for (int i = 0; i < rows; i++)
+        {
+            string[] input = Console.ReadLine().Split(' ').ToArray();
+            for (int c = 0; c < cols; c++)
+            {
+                array[i, c] = input[c].ToString();
+            }
+        }
+
+        for (int i = 0; i < array.GetLength(0)-1; i++)
+        {
+            for (int c = 0; c < array.GetLength(1)-1; c++)
+            {
+                if (array[i,c] == array[i,c+1] && array[i,c] == array[i+1,c] &&array[i,c] == array[i+1,c+1])
+                {
+                    counter++;
+                }
+            }
+        }
+        Console.WriteLine(counter);
+    }
+}
