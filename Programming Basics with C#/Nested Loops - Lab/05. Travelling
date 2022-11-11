@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+
+        while (input != "End")
+        {
+            string country = input;
+            double price = double.Parse(Console.ReadLine());
+            double savings = 0;
+            while (true)
+            {
+                savings += double.Parse(Console.ReadLine());
+                if (savings>=price)
+                {
+                    Console.WriteLine($"Going to {country}!");
+                    break;
+                }
+            }
+            input = Console.ReadLine();
+        }
+    }
+}
