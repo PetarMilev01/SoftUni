@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        for (int i = 1; i <= 10; i++)
+        {
+            for (int c = 1; c <= 10; c++)
+            {
+                Console.WriteLine($"{i} * {c} = {i * c}");
+            }
+        }
+    }
+}
