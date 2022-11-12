@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        HashSet<string> licensePlates = new HashSet<string>();
+        string input = Console.ReadLine();
+
+        while (input != "END")
+        {
+            string[] info = input.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string type = info[0];
+            string licensePlate = info[1];
+
+            if (type == "IN")
+            {
+                licensePlates.Add(licensePlate);
+            }
+            else if (type == "OUT")
+            {
+                licensePlates.Remove(licensePlate);
+            }
+            input = Console.ReadLine();
+        }
+        if (licensePlates.Count>0)
+        {
+            foreach (var licensePlate in licensePlates)
+            {
+                Console.WriteLine(licensePlate);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Parking Lot is Empty");
+        }
+    }
+}
