@@ -1,0 +1,213 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    { 
+        int[] size = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+        int rows = size[0];
+        int cols = size[1];
+        string[,] array = new string[rows, cols];
+
+        int playerRow = 0;
+        int playerCol = 0;
+
+        bool alive = true;
+        bool dropped = false; // if the player got out of the map
+
+        for (int i = 0; i < rows; i++)
+        {
+            string input = Console.ReadLine();
+            for (int c = 0; c < cols; c++)
+            {
+                array[i, c] = input[c].ToString();
+                if (array[i,c] == "P")
+                {
+                    playerRow = i;
+                    playerCol = c;
+                }
+            }
+        }
+
+        string commands = Console.ReadLine();
+        for (int i = 0; i < commands.Length; i++)
+        {
+            string command = commands[i].ToString();
+            if (command == "U")
+            {
+                if (playerRow - 1 >= 0)
+                {
+                    if (array[playerRow-1,playerCol] == ".")
+                    {
+                        array[playerRow, playerCol] = ".";
+                        array[playerRow - 1, playerCol] = "P";
+                        playerRow--;
+                    }
+                    else if (array[playerRow-1,playerCol] == "B")
+                    {
+                        alive = false;
+                        array[playerRow, playerCol] = ".";
+                        playerRow--;
+                    }
+                }
+                else 
+                {
+                    dropped = true;
+                    array[playerRow,playerCol] = ".";
+                }
+            }
+            else if (command == "D")
+            {
+                if (playerRow + 1 < rows)
+                {
+                    if (array[playerRow + 1, playerCol] == ".")
+                    {
+                        array[playerRow, playerCol] = ".";
+                        array[playerRow + 1, playerCol] = "P";
+                        playerRow++;
+                    }
+                    else if (array[playerRow + 1, playerCol] == "B")
+                    {
+                        alive = false;
+                        array[playerRow, playerCol] = ".";
+                        playerRow++;
+                    }
+                }
+                else
+                {
+                    dropped = true;
+                    array[playerRow, playerCol] = ".";
+                }
+            }
+            else if (command == "L") 
+            {
+                if (playerCol - 1 >= 0)
+                {
+                    if (array[playerRow, playerCol-1] == ".")
+                    {
+                        array[playerRow, playerCol] = ".";
+                        array[playerRow, playerCol-1] = "P";
+                        playerCol--;
+                    }
+                    else if (array[playerRow, playerCol-1] == "B")
+                    {
+                        alive = false;
+                        array[playerRow, playerCol] = ".";
+                        playerCol--;
+                    }
+                }
+                else
+                {
+                    dropped = true;
+                    array[playerRow, playerCol] = ".";
+                }
+            }
+            else if (command == "R")
+            {
+                if (playerCol + 1 < cols)
+                {
+                    if (array[playerRow, playerCol + 1] == ".")
+                    {
+                        array[playerRow, playerCol] = ".";
+                        array[playerRow, playerCol + 1] = "P";
+                        playerCol++;
+                    }
+                    else if (array[playerRow, playerCol + 1] == "B")
+                    {
+                        alive = false;
+                        array[playerRow, playerCol] = ".";
+                        playerCol++;
+                    }
+                }
+                else
+                {
+                    dropped = true;
+                    array[playerRow, playerCol] = ".";
+                }
+            }
+
+            List<string> indexes = new List<string>(); //all the indexes of bunnies
+
+            for (int row = 0; row < array.GetLength(0); row++)
+            {
+                for (int col = 0; col < array.GetLength(1); col++)
+                {
+                    if (array[row,col] == "B")
+                    {
+                        indexes.Add($"{row} {col}");
+                    }
+                }
+            }
+
+            for (int row = 0; row < array.GetLength(0); row++) // we go through the map to spread the bunnies
+            {
+                for (int col = 0; col < array.GetLength(1); col++)
+                {
+                    if (indexes.Count > 0)
+                    {
+                        if (int.Parse(indexes[0].Split(' ')[0]) == row && int.Parse(indexes[0].Split(' ')[1]) == col)
+                        {
+                            indexes.RemoveAt(0);
+                            if (row - 1 >= 0)  //check if we can create a bunny above the initial bunny
+                            {
+                                if (array[row-1,col] == "P")
+                                {
+                                    alive = false;
+                                }
+                                array[row - 1, col] = "B";
+                            }
+                            if (row + 1 < array.GetLength(0)) // below
+                            {
+                                if (array[row+1,col] == "P")
+                                {
+                                    alive = false;
+                                }
+                                array[row + 1, col] = "B";
+                            }
+                            if (col - 1 >= 0) // on the left
+                            {
+                                if (array[row,col-1] == "P")
+                                {
+                                    alive = false;
+                                }
+                                array[row, col - 1] = "B";
+                            }
+                            if (col + 1 < array.GetLength(1)) // on the right
+                            {
+                                if (array[row,col+1] == "P")
+                                {
+                                    alive = false;
+                                }
+                                array[row, col + 1] = "B";
+                            }
+                        }
+                    }
+                }
+            }
+            if (!alive || dropped)
+            {
+                break;
+            }
+        }
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            {
+                Console.Write($"{array[row, col]}");
+            }
+            Console.WriteLine();
+        }
+
+        if (dropped)
+        {
+            Console.WriteLine($"won: {playerRow} {playerCol}");
+        }
+        else
+        {
+            Console.WriteLine($"dead: {playerRow} {playerCol}");
+        }
+    }
+}
