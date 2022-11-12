@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        HashSet<string> invitedPeople = new HashSet<string>();
+        string input = Console.ReadLine();
+
+        while (input != "PARTY")
+        {
+            invitedPeople.Add(input);
+            input = Console.ReadLine();
+        }
+        input = Console.ReadLine();
+        while (input != "END")
+        {
+            invitedPeople.Remove(input);
+            input = Console.ReadLine();
+        }
+
+        Console.WriteLine(invitedPeople.Count);
+        foreach (var reservation in invitedPeople.OrderByDescending(x=>char.IsDigit(x[0])==true))
+        {
+            Console.WriteLine(reservation);
+        }
+    }
+}
