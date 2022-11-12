@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int first = int.Parse(Console.ReadLine());
+        int second = int.Parse(Console.ReadLine());
+
+        for (int i = first; i <= second; i++)
+        {
+            string current = i.ToString();
+            int sumOfEvenPositions = 0;
+            int sumOfOddPositions = 0;
+            for (int p = 0; p < current.Length; p++)
+            {
+                if (p % 2 == 0)
+                {
+                    sumOfEvenPositions += int.Parse(current[p].ToString());
+                }
+                else
+                {
+                    sumOfOddPositions += int.Parse(current[p].ToString());
+                }
+            }
+
+            if (sumOfEvenPositions == sumOfOddPositions)
+            {
+                Console.Write(current + " ");
+            }
+        }
+    }
+}
