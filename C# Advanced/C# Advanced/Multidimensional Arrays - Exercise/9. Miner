@@ -1,0 +1,133 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        string[,] array = new string[n, n];
+        string[] commands = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+        int playerRow = 0;
+        int playerCol = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            string[] input = Console.ReadLine().Split(' ').ToArray();
+            for (int c = 0; c < n; c++)
+            {
+                array[i, c] = input[c].ToString();
+                if (array[i,c] == "s")
+                {
+                    playerRow = i;
+                    playerCol = c;
+                }
+            }
+        }
+
+        for (int i = 0; i < commands.Length; i++)
+        {
+            string command = commands[i];
+            if (command == "up")
+            {
+                if (playerRow-1>=0)// check if we try to get out of the grid
+                {
+                    if (array[playerRow-1,playerCol] == "*")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow - 1, playerCol] = "s";
+                        playerRow--;
+                    }
+                    else if (array[playerRow-1,playerCol] == "c")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow - 1, playerCol] = "s";
+                        playerRow--;
+                    }
+                    else if (array[playerRow-1,playerCol] == "e")
+                    {
+                        Console.WriteLine($"Game over! ({playerRow-1}, {playerCol})");
+                        return;
+                    }
+                }
+            }
+            else if (command == "down")
+            {
+                if (playerRow + 1 < n)// check if we try to get out of the grid
+                {
+                    if (array[playerRow + 1, playerCol] == "*")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow + 1, playerCol] = "s";
+                        playerRow++;
+                    }
+                    else if (array[playerRow + 1, playerCol] == "c")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow + 1, playerCol] = "s";
+                        playerRow++;
+                    }
+                    else if (array[playerRow + 1, playerCol] == "e")
+                    {
+                        Console.WriteLine($"Game over! ({playerRow + 1}, {playerCol})");
+                        return;
+                    }
+                }
+            }
+            else if (command == "right")
+            {
+                if (playerCol + 1 <n)// check if we try to get out of the grid
+                {
+                    if (array[playerRow, playerCol+1] == "*")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow , playerCol+1] = "s";
+                        playerCol++;
+                    }
+                    else if (array[playerRow, playerCol+1] == "c")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow, playerCol+1] = "s";
+                        playerCol++;
+                    }
+                    else if (array[playerRow, playerCol+1] == "e")
+                    {
+                        Console.WriteLine($"Game over! ({playerRow}, {playerCol+1})");
+                        return;
+                    }
+                }
+            }
+            else if (command == "left")
+            {
+                if (playerCol - 1 >= 0)// check if we try to get out of the grid
+                {
+                    if (array[playerRow, playerCol-1] == "*")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow, playerCol-1] = "s";
+                        playerCol--;
+                    }
+                    else if (array[playerRow, playerCol-1] == "c")
+                    {
+                        array[playerRow, playerCol] = "*";
+                        array[playerRow, playerCol-1] = "s";
+                        playerCol--;
+                    }
+                    else if (array[playerRow, playerCol-1] == "e")
+                    {
+                        Console.WriteLine($"Game over! ({playerRow}, {playerCol-1})");
+                        return;
+                    }
+                }
+            }
+            if (!array.Cast<string>().Contains("c"))
+            {
+                Console.WriteLine($"You collected all coals! ({playerRow}, {playerCol})");
+                return;
+            }
+        }
+        int coalCount = array.Cast<string>().Where(x => x == "c").Count();
+        Console.WriteLine($"{coalCount} coals left. ({playerRow}, {playerCol})");
+    }
+}
