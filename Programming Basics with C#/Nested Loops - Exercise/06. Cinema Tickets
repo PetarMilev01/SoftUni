@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        int standardTickets = 0;
+        int kidTickets = 0;
+        int studentTickets = 0;
+
+        while (input != "Finish")
+        {
+            string movieName = input;
+            int movieSeatsTaken = 0;
+            int availableSeats = int.Parse(Console.ReadLine());
+            for (int i = 0; i < availableSeats; i++)
+            {
+                string typeOfSeat = Console.ReadLine();
+                if (typeOfSeat == "standard")
+                {
+                    standardTickets++;
+                }
+                else if (typeOfSeat == "student")
+                {
+                    studentTickets++;
+                }
+                else if (typeOfSeat == "kid")
+                {
+                    kidTickets++;
+                }
+                else
+                {
+                    break;
+                }
+                movieSeatsTaken++;
+            }
+            //tuka pishem statistikata na filma
+            Console.WriteLine($"{movieName} - {(double)movieSeatsTaken*100/availableSeats:0.00}% full.");
+            input = Console.ReadLine();
+        }
+        int allTickets = kidTickets + studentTickets + standardTickets;
+        Console.WriteLine($"Total tickets: {allTickets}");
+        Console.WriteLine($"{(double)studentTickets*100/allTickets:0.00}% student tickets.");
+        Console.WriteLine($"{(double)standardTickets*100/allTickets:0.00}% standard tickets.");
+        Console.WriteLine($"{(double)kidTickets*100/allTickets:0.00}% kids tickets.");
+    }
+}
