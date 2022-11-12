@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        string input = Console.ReadLine();
+        double allGradesSum = 0.0;
+        int counter = 0;
+
+        while (input != "Finish")
+        {
+            string name = input;
+            double currentSum = 0.0;
+            for (int c = 0; c < n; c++)
+            {
+                counter++;
+                currentSum += double.Parse(Console.ReadLine());
+            }
+            allGradesSum += currentSum;
+            Console.WriteLine($"{input} - {currentSum/n:0.00}.");
+            input = Console.ReadLine();
+        }
+        Console.WriteLine($"Student's final assessment is {allGradesSum/counter:0.00}.");
+    }
+}
