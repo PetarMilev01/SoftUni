@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, List<double>> dict = new Dictionary<string, List<double>>();
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            string[] input = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string name = input[0];
+            double money = double.Parse(input[1]);
+            if (dict.ContainsKey(name))
+            {
+                dict[name].Add(money);
+            }
+            else
+            {
+                dict.Add(name, new List<double> { money });
+            }
+        }
+        foreach (var name in dict)
+        {
+            Console.Write($"{name.Key} -> ");
+            for (int i = 0; i < name.Value.Count; i++)
+            {
+                Console.Write($"{name.Value[i]:0.00} ");
+            }
+            Console.WriteLine($"(avg: {name.Value.Average():0.00})");
+        }
+    }
+}
