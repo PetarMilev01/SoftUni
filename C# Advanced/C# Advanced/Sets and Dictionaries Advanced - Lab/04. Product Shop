@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, Dictionary<string, double>> shops = new Dictionary<string, Dictionary<string, double>>();
+        string input = Console.ReadLine();
+
+        while (input != "Revision")
+        {
+            string[] info = input.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string shop = info[0];
+            string product = info[1];
+            double price = double.Parse(info[2]);
+
+            if (shops.ContainsKey(shop))
+            {
+                shops[shop].Add(product, price);
+            }
+            else
+            {
+                shops.Add(shop, new Dictionary<string, double>());
+                shops[shop].Add(product, price);
+            }
+            input = Console.ReadLine();
+        }
+        foreach (var shop in shops.OrderBy(x=>x.Key))
+        {
+            Console.WriteLine($"{shop.Key}->");
+            foreach (var productPair in shop.Value)
+            {
+                Console.WriteLine($"Product: {productPair.Key}, Price: {productPair.Value}");
+            }
+        }
+    }
+}
