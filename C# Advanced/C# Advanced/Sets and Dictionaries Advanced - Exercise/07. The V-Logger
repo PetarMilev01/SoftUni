@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, Dictionary<string, HashSet<string>>> dict = new Dictionary<string, Dictionary<string, HashSet<string>>>();
+        string input = Console.ReadLine();
+
+        while (input != "Statistics")
+        {
+            string[] line = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string name = line[0];
+            string action = line[1];
+
+            if (action == "joined")
+            {
+                if (!dict.ContainsKey(name))
+                {
+                    dict.Add(name, new Dictionary<string, HashSet<string>>());
+                    dict[name].Add("followers", new HashSet<string>());
+                    dict[name].Add("following", new HashSet<string>());
+                }
+            }
+            else if (action == "followed")
+            {
+                string follower = name;
+                string followed = line[2];
+                if (dict.ContainsKey(follower) && dict.ContainsKey(followed) && follower != followed)
+                {
+                    dict[follower]["following"].Add(followed);
+                    dict[followed]["followers"].Add(follower);
+                }
+            }
+            input = Console.ReadLine();
+        }
+
+        int counter = 1;
+        Console.WriteLine($"The V-Logger has a total of {dict.Count()} vloggers in its logs.");
+
+        foreach (var person in dict.OrderByDescending(x=>x.Value["followers"].Count()).ThenBy(x=>x.Value["following"].Count()))
+        {
+            Console.WriteLine($"{counter}. {person.Key} : {person.Value["followers"].Count()} followers, {person.Value["following"].Count()} following");
+
+            if (counter == 1)
+            {
+                foreach (var follower in person.Value["followers"].OrderBy(x=>x))
+                {
+                    Console.WriteLine($"*  {follower}");
+                }
+            }
+            counter++;
+        }
+    }
+}
