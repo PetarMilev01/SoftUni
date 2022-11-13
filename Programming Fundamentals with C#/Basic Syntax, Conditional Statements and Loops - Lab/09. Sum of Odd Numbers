@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int sum = 0;
+        for (int i = 0,p=1; i < n; i++,p+=2)
+        {
+            Console.WriteLine(p);
+            sum += p;
+        }
+        Console.WriteLine($"Sum: {sum}");
+    }
+}
