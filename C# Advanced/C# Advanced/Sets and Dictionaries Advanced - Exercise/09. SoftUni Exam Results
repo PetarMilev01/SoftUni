@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, int> students = new Dictionary<string, int>();
+        Dictionary<string, int> courses = new Dictionary<string, int>();
+
+        string input = Console.ReadLine();
+        while (input != "exam finished")
+        {
+            string[] parts = input.Split('-').ToArray();
+            string student = parts[0];
+            string course = parts[1];
+
+            if (input.EndsWith("banned") && students.ContainsKey(student))
+            {
+                students.Remove(student);
+            }
+            else
+            {
+
+
+                int points = int.Parse(parts[2]);
+
+                if (students.ContainsKey(student))
+                {
+                    students[student] = Math.Max(students[student], points);
+                }
+                else
+                {
+                    students.Add(student, points);
+                }
+
+                if (courses.ContainsKey(course))
+                {
+                    courses[course]++;
+                }
+                else
+                {
+                    courses.Add(course, 1);
+                }
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine("Results:");
+
+        foreach (var student in students.OrderByDescending(x=>x.Value).ThenBy(x=>x.Key))
+        {
+            Console.WriteLine($"{student.Key} | {student.Value}");
+        }
+        Console.WriteLine("Submissions:");
+
+        foreach (var course in courses.OrderByDescending(x=>x.Value).ThenBy(x=>x.Key))
+        {
+            Console.WriteLine($"{course.Key} - {course.Value}");
+        }
+    }
+}
