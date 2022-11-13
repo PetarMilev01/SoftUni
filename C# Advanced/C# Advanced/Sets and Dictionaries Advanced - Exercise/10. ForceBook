@@ -1,0 +1,90 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, List<string>> sides = new Dictionary<string, List<string>>();
+
+        string input = Console.ReadLine();
+
+        while (input != "Lumpawaroo")
+        {
+            if (input.Contains(" | "))
+            {
+                string[] parts = input.Split(new string[] { " | " }, StringSplitOptions.None).ToArray();
+                string side = parts[0];
+                string user = parts[1];
+                bool isCreated = sides.Values.Any(x => x.Any(y => y == user));
+
+                if (!isCreated)
+                {
+                    if (sides.ContainsKey(side))
+                    {
+                        sides[side].Add(user);
+                    }
+                    else
+                    {
+                        sides.Add(side, new List<string> { user });
+                    }
+                }
+            }
+            else if (input.Contains(" -> "))
+            {
+                string[] parts = input.Split(new string[] { " -> " }, StringSplitOptions.None).ToArray();
+                string user = parts[0];
+                string side = parts[1];
+                bool isCreated = sides.Values.Any(x => x.Any(y => y == user));
+
+                if (!isCreated)
+                {
+                    if (sides.ContainsKey(side))
+                    {
+                        sides[side].Add(user);
+                    }
+                    else
+                    {
+                        sides.Add(side, new List<string> { user });
+                    }
+                }
+                else
+                {
+                    string wantedSide = "";
+                    foreach (var pair in sides)
+                    {
+                        foreach (var username in pair.Value)
+                        {
+                            if (username == user)
+                            {
+                                wantedSide = pair.Key;
+                            }
+                        }
+                    }
+                    sides[wantedSide].Remove(user);
+                    if (sides.ContainsKey(side))
+                    {
+                        sides[side].Add(user);
+                    }
+                    else
+                    {
+                        sides.Add(side, new List<string> { user });
+                    }
+                }
+
+                Console.WriteLine($"{user} joins the {side} side!");
+            }
+            input = Console.ReadLine();
+        }
+
+        foreach (var side in sides.Where(x=>x.Value.Count>0).OrderByDescending(x=>x.Value.Count).ThenBy(x=>x.Key))
+        {
+            Console.WriteLine($"Side: {side.Key}, Members: {side.Value.Count}");
+            foreach (var name in side.Value.OrderBy(x => x))
+            {
+                Console.WriteLine($"! {name}");
+            }
+        }
+    }
+}
