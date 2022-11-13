@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string dateType = Console.ReadLine();
+        int age = int.Parse(Console.ReadLine());
+        int money = 0;
+
+        if (age<0 || age>122)
+        {
+            Console.WriteLine("Error!");
+            return;
+        }
+
+        if (dateType == "Weekday")
+        {
+            if (age >= 0 && age <= 18) 
+            {
+                money = 12;
+            }
+            else if (age> 18 && age<=64)
+            {
+                money = 18;
+            }
+            else if (age>=65 && age<=122)
+            {
+                money = 12;
+            }
+        }
+        else if (dateType == "Weekend")
+        {
+            if (age >= 0 && age <= 18)
+            {
+                money = 15;
+            }
+            else if (age > 18 && age <= 64)
+            {
+                money = 20;
+            }
+            else if (age >= 65 && age <= 122)
+            {
+                money = 15;
+            }
+        }
+        else if (dateType == "Holiday")
+        {
+            if (age >= 0 && age <= 18)
+            {
+                money = 5;
+            }
+            else if (age > 18 && age <= 64)
+            {
+                money = 12;
+            }
+            else if (age >= 65 && age <= 122)
+            {
+                money = 10;
+            }
+        }
+        Console.WriteLine(money + "$");
+    }
+}
