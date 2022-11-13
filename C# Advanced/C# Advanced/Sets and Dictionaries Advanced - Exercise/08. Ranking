@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> contests = new Dictionary<string, string>();
+        Dictionary<string, Dictionary<string, int>> students = new Dictionary<string, Dictionary<string, int>>();
+
+        string input = Console.ReadLine();
+
+        while (input != "end of contests")
+        {
+            string[] info = input.Split(':').ToArray();
+            string contest = info[0];
+            string password = info[1];
+            contests.Add(contest, password);
+            input = Console.ReadLine();
+        }
+        input = Console.ReadLine();
+
+        while (input != "end of submissions")
+        {
+            string[] info = input.Split(new string[] { "=>" }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string contest = info[0];
+            string password = info[1];
+            string student = info[2];
+            int points = int.Parse(info[3]);
+
+            if (contests.ContainsKey(contest) && contests[contest] == password)
+            {
+                if (students.ContainsKey(student))
+                {
+                    if (students[student].ContainsKey(contest))
+                    {
+                        students[student][contest] = Math.Max(students[student][contest], points);
+                    }
+                    else
+                    {
+                        students[student].Add(contest, points);
+                    }
+                }
+                else
+                {
+                    students.Add(student, new Dictionary<string, int>());
+                    students[student].Add(contest, points);
+                }
+            }
+            input = Console.ReadLine();
+        }
+
+        foreach (var student in students.OrderByDescending(x=>x.Value.Values.Sum()))
+        {
+            Console.WriteLine($"Best candidate is {student.Key} with total {students[student.Key].Values.Sum()} points.");
+            break;
+        }
+
+        Console.WriteLine("Ranking:");
+
+        foreach (var student in students.OrderBy(x=>x.Key))
+        {
+            Console.WriteLine($"{student.Key}");
+            foreach (var pair in student.Value.OrderByDescending(x=>x.Value))
+            {
+                Console.WriteLine($"#  {pair.Key} -> {pair.Value}");
+            }
+        }
+    }
+}
