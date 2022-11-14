@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int limit = int.Parse(Console.ReadLine());
+        List<int> dividors = Console.ReadLine().Split(' ').Select(int.Parse).ToList();
+
+        for (int i = 1; i <= limit; i++)
+        {
+            bool divisible = true;
+            foreach (var number in dividors)
+            {
+                if (i % number != 0)
+                {
+                    divisible = false;
+                }
+                if (!divisible)
+                {
+                    break;
+                }
+            }
+            if (divisible)
+            {
+                Console.Write(i + " ");
+            }
+        }
+    }
+}
