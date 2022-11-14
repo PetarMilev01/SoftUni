@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int[] numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        string input = Console.ReadLine();
+
+        while (input != "end")
+        {
+            if (input == "add")
+            {
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i]++;
+                }   
+            }
+            else if (input == "multiply")
+            {
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i] *= 2;
+                }
+            }
+            else if (input == "subtract")
+            {
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i]--;
+                }
+            }
+            else if (input == "print")
+            {
+                Console.WriteLine(string.Join(" ",numbers));
+            }
+            input = Console.ReadLine();
+        }
+    }
+}
