@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            string[] commands = Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            string name = commands[0];
+            int age = int.Parse(commands[1]);
+            dict.Add(name, age);
+        }
+
+        string relate = Console.ReadLine();
+        int years = int.Parse(Console.ReadLine());
+        string nameAge = Console.ReadLine();
+
+        if (relate == "older")
+        {
+            foreach (var name in dict.Where(x => x.Value >= years))
+            {
+                if (nameAge == "name age")
+                {
+                    Console.WriteLine($"{name.Key} - {name.Value}");
+                }
+                else if (nameAge == "name")
+                {
+                    Console.WriteLine($"{name.Key}");
+                }
+                else if (nameAge == "age")
+                {
+                    Console.WriteLine($"{name.Value}");
+                }
+            }
+        }
+        else if (relate == "younger")
+        {
+            foreach (var name in dict.Where(x => x.Value < years))
+            {
+                if (nameAge == "name age")
+                {
+                    Console.WriteLine($"{name.Key} - {name.Value}");
+                }
+                else if (nameAge == "name")
+                {
+                    Console.WriteLine($"{name.Key}");
+                }
+                else if (nameAge == "age")
+                {
+                    Console.WriteLine($"{name.Value}");
+                }
+            }
+        }
+    }
+}
