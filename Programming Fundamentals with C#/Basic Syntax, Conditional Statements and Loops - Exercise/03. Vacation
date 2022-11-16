@@ -1,0 +1,140 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+            int groupOfPeople = int.Parse(Console.ReadLine());
+            string typeOfGroup = Console.ReadLine();
+            string day = Console.ReadLine();
+            double price = 0.0;
+
+            if (typeOfGroup == "Students")
+            {
+                if (day == "Friday")                          
+                {                                             
+                    if (groupOfPeople <= 29)
+                    {
+                        price = 8.45 * groupOfPeople;
+                    }
+                    else
+                    {
+                        price = (8.45 * groupOfPeople);
+                        double percent15 = (price * 15) / 100;
+                        price = price - percent15;
+                    }
+                }
+                else if (day == "Saturday")
+                {
+                    if (groupOfPeople <= 29)
+                    {
+                        price = 9.80 * groupOfPeople;
+                    }
+                    else
+                    {
+                        price = (9.80 * groupOfPeople);
+                        double percent15 = (price * 15) / 100;
+                        price = price - percent15;
+                    }
+                }
+                else
+
+                {
+                    if (groupOfPeople <= 29)
+                    {
+                        price = 10.46 * groupOfPeople;
+                    }
+                    else
+                    {
+                        price = (10.46 * groupOfPeople);
+                        double percent15 = (price * 15) / 100;
+                        price = price - percent15;
+                    }
+                }
+            }
+            else if (typeOfGroup == "Business")
+            {
+                if (day == "Friday")
+                {
+                    if (groupOfPeople >= 100)
+                    {
+                        price = (groupOfPeople - 10) * 10.90;
+                    }
+                    else
+                    {
+                    price = groupOfPeople * 10.90;
+                    }
+                }
+                else if (day == "Saturday")
+                {
+                    if (groupOfPeople >= 100)
+                    {
+                        price = (groupOfPeople-10) * 15.60;
+                    }
+                    else
+                    {
+                        price = groupOfPeople * 15.60;
+                    }
+                }
+                else
+                {
+                    if (groupOfPeople >= 100)
+                    {
+                        price = (groupOfPeople-10) * 16;
+                    }
+                    else
+                    {
+                        price = groupOfPeople * 16;
+                    }
+                }
+            }
+            else
+            {
+                if (day == "Friday")
+                {
+                    if (groupOfPeople >= 10 && groupOfPeople <= 20)
+                    {
+                        price = groupOfPeople * 15;
+                        double percent15 = (price * 5) / 100;
+                        price = price - percent15;
+
+                    }
+                    else
+                    {
+                        price = groupOfPeople * 15;
+                    }
+                }
+                else if (day == "Saturday")
+                {
+                    if (groupOfPeople >= 10 && groupOfPeople <= 20)
+                    {
+                        price = groupOfPeople * 20;
+                        double percent15 = (price * 5) / 100;
+                        price = price - percent15;
+
+                    }
+                    else
+                    {
+                        price = groupOfPeople * 20;
+                    }
+                }
+                else
+                {
+                    if (groupOfPeople >= 10 && groupOfPeople <= 20)
+                    {
+                        price = groupOfPeople * 22.50;
+                        double percent15 = (price * 5) / 100;
+                        price = price - percent15;
+
+                    }
+                    else
+                    {
+                        price = groupOfPeople * 22.50;
+                    }
+                }
+            }
+            Console.WriteLine($"Total price: {price:0.00}");
+        }
+    }
