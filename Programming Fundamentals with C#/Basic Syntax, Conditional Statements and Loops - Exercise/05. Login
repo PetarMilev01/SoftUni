@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        string username = Console.ReadLine();
+        string tryReversedUsername = Console.ReadLine();
+        int timesTryed = 0;
+        string usernameReversed = new string(username.Reverse().ToArray());
+
+        while (timesTryed < 3)
+        {
+            if (tryReversedUsername != usernameReversed)
+            {
+                Console.WriteLine("Incorrect password. Try again.");
+            }
+            else
+            {
+                Console.WriteLine($"User {username} logged in.");
+                return;
+            }
+            tryReversedUsername = Console.ReadLine();
+            timesTryed++;
+        }
+            Console.WriteLine($"User {username} blocked!");
+    }
+}
