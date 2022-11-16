@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+namespace DefiningClasses
+{
+    public class StartUp
+    {
+        static void Main()
+        {
+            int lostGames = int.Parse(Console.ReadLine());
+            double headsetPrice = double.Parse(Console.ReadLine());
+            double mousePrice = double.Parse(Console.ReadLine());
+            double keyboardPrice = double.Parse(Console.ReadLine());
+            double displayPrice = double.Parse(Console.ReadLine());
+
+            double everySecondTime = Math.Floor((double)lostGames / 2);//headset
+            double everyThirdTime = Math.Floor((double)lostGames / 3);//mouse
+            double everySixthTime = Math.Floor((double)lostGames / 6);//keyboard
+            double everyTwelfthTime = Math.Floor((double)lostGames / 12);//display
+
+            double price = everySecondTime * headsetPrice + everyThirdTime * mousePrice + everySixthTime * keyboardPrice + everyTwelfthTime * displayPrice;
+            Console.WriteLine($"Rage expenses: {price:0.00} lv.");
+        }
+    }
+}
