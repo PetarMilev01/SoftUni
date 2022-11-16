@@ -1,0 +1,96 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        string input = Console.ReadLine();
+        double totalMoney = 0.0;
+        while (input != "Start")
+        {
+            double coin = 0.0;
+            coin = double.Parse(input);
+            if (coin != 0.1 && coin != 0.2 && coin != 0.5 && coin != 1 && coin != 2)
+            {
+                Console.WriteLine($"Cannot accept {coin}");
+            }
+            else
+            {
+                totalMoney += coin;
+            }
+            input = Console.ReadLine();
+        }
+        input = Console.ReadLine();
+        while (input != "End")
+        {
+            if (input != "Nuts" && input != "Water" && input != "Crisps" && input != "Soda" && input != "Coke")
+            {
+                Console.WriteLine("Invalid product");
+            }
+            else if (input == "Nuts")
+            {
+                if (totalMoney >= 2.00)
+                {
+                    totalMoney -= 2.0;
+                    Console.WriteLine("Purchased nuts");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, not enough money");
+                }
+            }
+            else if (input == "Water")
+            {
+                if (totalMoney >= 0.7)
+                {
+                    totalMoney -= 0.7;
+                    Console.WriteLine("Purchased water");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, not enough money");
+                }
+            }
+            else if (input == "Crisps")
+            {
+                if (totalMoney >= 1.5)
+                {
+                    totalMoney -= 1.5;
+                    Console.WriteLine("Purchased crisps");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, not enough money");
+                }
+            }
+            else if (input == "Soda")
+            {
+                if (totalMoney >= 0.8)
+                {
+                    totalMoney -= 0.8;
+                    Console.WriteLine("Purchased soda");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, not enough money");
+                }
+            }
+            else
+            {
+                if (totalMoney >= 1.0)
+                {
+                    totalMoney -= 1.0;
+                    Console.WriteLine("Purchased coke");
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, not enough money");
+                }
+            }
+            input = Console.ReadLine();
+        }
+        Console.WriteLine($"Change: {totalMoney:0.00}");
+    }
+}
