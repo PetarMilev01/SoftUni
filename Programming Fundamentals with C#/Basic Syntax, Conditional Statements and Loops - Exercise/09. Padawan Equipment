@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+namespace DefiningClasses
+{
+    public class StartUp
+    {
+        static void Main()
+        {
+            double budget = double.Parse(Console.ReadLine());
+            double students = int.Parse(Console.ReadLine());
+            double lightSaberPrice = double.Parse(Console.ReadLine());
+            double robePrice = double.Parse(Console.ReadLine());
+            double beltPrice = double.Parse(Console.ReadLine());
+
+            double lightsaberCount = Math.Ceiling(students + students * 0.1);
+            double belts = students - Math.Floor(students / 6);
+            double robes = students;
+
+            double price = lightSaberPrice * lightsaberCount + belts * beltPrice + robes * robePrice;
+
+            if (price<= budget)
+            {
+                Console.WriteLine($"The money is enough - it would cost {price:0.00}lv.");
+            }
+            else
+            {
+                Console.WriteLine($"John will need {price-budget:0.00}lv more.");
+            }
+        }
+    }
+}
