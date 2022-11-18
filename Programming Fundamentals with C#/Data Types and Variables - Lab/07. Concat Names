@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        string name = Console.ReadLine();
+        string nextName = Console.ReadLine();
+        string delimeter = Console.ReadLine();
+
+        Console.WriteLine(name + delimeter + nextName);
+    }
+}
