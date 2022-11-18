@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Stack<int> caffeineMiligrams = new Stack<int>(Console.ReadLine().Split(new string[] { ", " },StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray());
+        Queue<int> energyDrinks = new Queue<int>(Console.ReadLine().Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray());
+        int caffeine = 0;
+
+        while (caffeineMiligrams.Count > 0 && energyDrinks.Count > 0) 
+        {
+            if (caffeineMiligrams.Peek() * energyDrinks.Peek() + caffeine <= 300)
+            {
+                caffeine += caffeineMiligrams.Pop() * energyDrinks.Dequeue(); 
+            }
+            else
+            {
+                caffeineMiligrams.Pop();
+                int drink = energyDrinks.Dequeue();
+                energyDrinks.Enqueue(drink);
+
+                if (caffeine-30 <=0)
+                {
+                    caffeine = 0;
+                }
+                else
+                {
+                    caffeine -= 30;
+                }
+            }
+        }
+        if (energyDrinks.Count>0)
+        {
+            Console.WriteLine($"Drinks left: {string.Join(", ",energyDrinks)}");
+        }
+        else
+        {
+            Console.WriteLine($"At least Stamat wasn't exceeding the maximum caffeine.");
+        }
+        Console.WriteLine($"Stamat is going to sleep with {caffeine} mg caffeine.");
+    }
+}
