@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int number = int.Parse(Console.ReadLine());
+        double lastDigit = 0.0;
+        double firstDigit = 0.0;
+        double sumOfDigits = 0.0;
+
+        for (int i = 1; i <= number; i++)
+        {
+            lastDigit = i % 10;
+            firstDigit = i / 10;
+            sumOfDigits = lastDigit + firstDigit;
+            if (sumOfDigits == 5 || sumOfDigits == 7 || sumOfDigits == 11)
+            {
+                Console.WriteLine($"{i} -> True");
+            }
+            else
+            {
+                Console.WriteLine($"{i} -> False");
+            }
+        }
+    }
+}
