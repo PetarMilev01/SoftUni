@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        string[,] arr = new string[n, n];
+
+        string carNumber = Console.ReadLine();
+        int row = 0;
+        int col = 0;
+
+        int distance = 0;
+        List<int> firstTunnel = new List<int>();
+        List<int> secondTunnel = new List<int>();
+        bool finished = false;
+        bool beenInTunnel = false;
+
+        for (int i = 0; i < n; i++)
+        {
+            string[] info = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            for (int c = 0; c < n; c++)
+            {
+                arr[i, c] = info[c];
+                if (arr[i, c] == "T" && firstTunnel.Count == 0) 
+                {
+                    firstTunnel.Add(i);
+                    firstTunnel.Add(c);
+                }
+                else if (arr[i,c] == "T")
+                {
+                    secondTunnel.Add(i);
+                    secondTunnel.Add(c);
+                }
+            }
+        }
+
+        string input = Console.ReadLine();
+        while (input != "End")
+        {
+            if (input == "up")
+            {
+                row--;
+            }
+            else if (input == "down")
+            {
+                row++;
+            }
+            else if (input == "left")
+            {
+                col--;
+            }
+            else if (input == "right")
+            {
+                col++;
+            }
+
+            if (arr[row,col] == "T")
+            {
+                if (firstTunnel[0] == row && firstTunnel[1] == col)
+                {
+                    row = secondTunnel[0];
+                    col = secondTunnel[1];
+                }
+                else
+                {
+                    row = firstTunnel[0];
+                    col = firstTunnel[1];
+                }
+                beenInTunnel = true;
+                distance += 30;
+            }
+            else if (arr[row,col] == "F")
+            {
+                distance += 10;
+                finished = true;
+                break;
+            }
+            else
+            {
+                distance += 10;
+            }
+            input = Console.ReadLine();
+        }
+
+        if (finished)
+        {
+            Console.WriteLine($"Racing car {carNumber} finished the stage!");
+        }
+        else
+        {
+            Console.WriteLine($"Racing car {carNumber} DNF.");
+        }
+        Console.WriteLine($"Distance covered {distance} km.");
+
+        arr[row, col] = "C";
+
+        if (beenInTunnel)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int c = 0; c < n; c++)
+                {
+                    if (arr[i,c] == "T")
+                    {
+                        arr[i, c] = ".";
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < arr.GetLength(0); i++)
+        {
+            for (int c = 0; c < arr.GetLength(1); c++)
+            {
+                Console.Write($"{arr[i,c]}");
+            }
+            Console.WriteLine();
+        }
+    }
+}
