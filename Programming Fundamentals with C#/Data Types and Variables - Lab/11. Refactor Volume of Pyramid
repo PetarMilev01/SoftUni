@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    static void Main()
+    {
+        Console.Write("Length: ");
+        double length = double.Parse(Console.ReadLine());
+        Console.Write("Width: ");
+        double width = double.Parse(Console.ReadLine());
+        Console.Write("Height: ");
+        double number = double.Parse(Console.ReadLine());
+        number = (length * width * number) / 3;
+        Console.WriteLine($"Pyramid Volume: {number:f2}");
+    }
+}
