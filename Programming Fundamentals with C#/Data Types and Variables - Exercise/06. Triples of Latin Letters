@@ -1,0 +1,20 @@
+using System;
+
+public class StartUp
+{
+    public static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int c = 0; c < n; c++)
+            {
+                for (int g = 0; g < n; g++)
+                {
+                    Console.WriteLine($"{(char)('a' + i)}{(char)('a' + c)}{(char)('a' + g)}");
+                }
+            }
+        }
+    }
+}
