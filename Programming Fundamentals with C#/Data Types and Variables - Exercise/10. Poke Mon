@@ -1,0 +1,26 @@
+using System;
+
+public class StartUp
+{
+    public static void Main()
+    {
+        int powerOriginal = int.Parse(Console.ReadLine());
+        int pokePowerSecond = powerOriginal;
+        int distance = int.Parse(Console.ReadLine());
+        int exhaust = int.Parse(Console.ReadLine());
+        int counter = 0;
+
+        while (pokePowerSecond >= distance)
+        {
+            pokePowerSecond -= distance;
+            counter++;
+            if (pokePowerSecond * 2 == powerOriginal && exhaust != 0)
+            {
+                pokePowerSecond /= exhaust;
+            }
+        }
+
+        Console.WriteLine(pokePowerSecond);
+        Console.WriteLine(counter);
+    }
+}
