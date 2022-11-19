@@ -1,0 +1,38 @@
+using System;
+
+public class StartUp
+{
+    public static void Main()
+    {
+        int startingYield = int.Parse(Console.ReadLine());
+        int days = 0;
+        int amountStored = 0;
+
+        while (startingYield >= 100)
+        {
+            amountStored += startingYield;
+            startingYield -= 10;
+
+            if (amountStored - 26 < 0)
+            {
+                amountStored = 0;
+            }
+            else
+            {
+                amountStored -= 26;
+            }
+            days++;
+        }
+
+        if (amountStored - 26 < 0)
+        {
+            amountStored = 0;
+        }
+        else
+        {
+            amountStored -= 26;
+        }
+        Console.WriteLine(days);
+        Console.WriteLine(amountStored);
+    }
+}
