@@ -1,0 +1,35 @@
+using System;
+using System.Globalization;
+using System.Numerics;
+using System.Threading;
+
+public class StartUp
+{
+    public static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        PrintTriangle(n);
+    }
+
+    public  static void PrintTriangle(int n)
+    {
+
+        for (int i = 1; i <= n; i++)
+        {
+            for (int c = 1; c <= i; c++)
+            {
+                Console.Write(c + " ");
+            }
+            Console.WriteLine();
+        }
+
+        for (int i = n - 1; i >= 1; i--)
+        {
+            for (int c = 1; c <= i; c++)
+            {
+                Console.Write(c + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
